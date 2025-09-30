@@ -1,3 +1,5 @@
+/* ----- HOMEPAGE ------ */
+
 /* RECOMENDATIONS SECTION */
 .recommendations{
   background-color: #FEFCF4;
@@ -228,4 +230,155 @@
   margin-bottom: 2em;
   margin-top: 2em;
   padding-right: 7%;
+}
+
+
+
+/* ----- LIBRARY ------ */
+
+/* ALL MOVIES SECTION */
+.librarySection{
+  background-color: #11100E;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+#libraryHeaderText{
+  margin: 0;
+}
+
+.textAndFilter{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  padding: 2% 4%;
+}
+
+.textAndFilter h1{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 400%;
+  color: #FEFCF4;
+}
+
+.searchAndSort{
+  display: flex;
+  align-self: center;
+}
+
+.searchBar{
+  border-radius: 50px;
+  border: none;
+  padding: 6% 6%;
+  margin-right: 10%;
+  width: 330px;
+  height: 40px;
+  background-color: #157267;
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
+
+.searchBar p{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 130%;
+  color: #FEFCF4;
+  padding: 6%;
+  margin: 0;
+}
+
+.searchBar i{
+  font-size: 120%;
+  color: #FEFCF4;
+  padding: 2%;
+}
+
+.sortByDropdown{
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
+
+/* CARDS */
+#libraryCard{
+  margin-bottom: 6%;
+  align-self: center;
+  align-content: center;
+  padding: 1% 1rem;
+}
+
+.libraryCardBody{
+  background-color: #FEFCF4;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  padding: 6% 6%;
+}
+
+.movieTitle{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  margin-bottom: 5%;
+  color: #11100E;
+}
+
+.genreAndYear{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}
+
+.genreAndYear p{
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 90%;
+  color: #157267;
+  padding-right: 2%;
+}
+
+.genreAndYear i{
+  color: #157267;
+  margin-right: 4%;
+  font-size: 130%;
+}
+
+.cardText{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 100%;
+  color: #11100E;
+  margin-top: 5%;
+}
+
+.libraryCardButtons{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}
+
+.libraryCardButtons i{
+  margin-right: 5%;
+  font-size: 110%;
+  color: #FEFCF4;
+}
+
+#watchlistButton{
+  margin-right: 5%;
+  background-color: #11100E;
+  border: none;
+  border-radius: 50px;
+  height: 200%;
+  width: 45%;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 90%;
+  color: #FEFCF4;
+  padding: 4% 2%;
 }
