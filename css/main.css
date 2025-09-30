@@ -239,8 +239,6 @@
 /* ALL MOVIES SECTION */
 .librarySection{
   background-color: #11100E;
-  padding-top: 5%;
-  padding-bottom: 5%;
   justify-content: center;
   align-items: center;
   align-content: center;
@@ -382,3 +380,25 @@
   color: #FEFCF4;
   padding: 4% 2%;
 }
+
+
+
+/* ----- WATCHLIST ------ */
+/* MY WATCHLIST SECTION */
+.watchlistHeader{
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+}
+
+#watchlistHeaderText{
+  margin: 0;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 400%;
+  color: #FEFCF4;
+}
+
