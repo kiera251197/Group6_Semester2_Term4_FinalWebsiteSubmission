@@ -25,7 +25,8 @@ async function fetchMovies() {
             const poster = movie.poster_path
                 ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
                 : 'assets/img/tangled placeholder image.jpg';
-            const link = `https://www.themoviedb.org/${movie.media_type}/${movie.id}`;
+            const link = `https://www.themoviedb.org/movie/${movie.id}`;
+
 
             // Populate card
             const imgEl = card.querySelector('img');
