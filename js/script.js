@@ -24,6 +24,16 @@ let data= await fetch('https://api.themoviedb.org/3/movie/popular?language=en-US
             .catch((error)=> console.log(error));
             console.log(data);
 
+
+            //get and set slider images using Api
+              let sliderImage1 = `https://image.tmdb.org/t/p/w500${data.results[0].backdrop_path}`;
+              let sliderImage2 = `https://image.tmdb.org/t/p/w500${data.results[1].backdrop_path}`;
+              let sliderImage3 = `https://image.tmdb.org/t/p/w500${data.results[2].backdrop_path}`;
+          
+              document.getElementById('sliderImg1').innerHTML = `<img src="${sliderImage1}" class="d-block w-100">`;
+              document.getElementById('sliderImg2').innerHTML = `<img src="${sliderImage2}" class="d-block w-100">`;
+              document.getElementById('sliderImg3').innerHTML = `<img src="${sliderImage3}" class="d-block w-100">`;
+            //get and set movie of the month using Api
               let image = `https://image.tmdb.org/t/p/w500${data.results[0].poster_path}`;
               let title = data.results[0].original_title;
               let description = data.results[0].overview;
@@ -38,11 +48,7 @@ let data= await fetch('https://api.themoviedb.org/3/movie/popular?language=en-US
             0%; border-radius: 50px;" alt="Movie Poster">`;
 
               
-             
-              
-
-
-
+          
 }();
 
 
