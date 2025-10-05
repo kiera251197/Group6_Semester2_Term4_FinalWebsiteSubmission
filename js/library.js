@@ -104,7 +104,7 @@ function sortByGenre()
   byGenre.forEach(Movies => {
     const card = `
       <div class="col col-lg-3 col-md-6 align-items-stretch h-100">
-        <img src="${Movies.image}" class="card-img-top" alt="${Movies.title}" style="border-top-left-radius: 25px; border-top-right-radius: 25px;">
+        <img src="https://image.tmdb.org/t/p/w500${Movies.poster}" class="card-img-top" alt="${Movies.title}" style="border-top-left-radius: 25px; border-top-right-radius: 25px;">
         <div class="card-body libraryCardBody">
           <h3 class="movieTitle">${Movies.title}</h3>
           <h6 class="genreAndYear">
