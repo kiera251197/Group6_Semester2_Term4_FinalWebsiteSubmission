@@ -1,0 +1,6 @@
+# macOS system files
+.DS_Store
+
+# Optional: other common files to ignore
+# Thumbs.db (Windows)
+# node_modules/ (for JavaScript projects)

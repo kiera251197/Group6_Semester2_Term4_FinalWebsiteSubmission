@@ -1,0 +1,231 @@
+/* RECOMENDATIONS SECTION */
+.recommendations{
+  background-color: #FEFCF4;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+.recommendationsContainer{
+  text-align: center;
+  align-items: center;
+  align-content: center;
+}
+
+#recommendationsCard{
+  margin-bottom: 3%;
+  align-self: center;
+  align-content: center;
+  padding: 1% 1rem;
+}
+
+.sectionTitle h1{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 400%;
+  margin-bottom: 2rem;
+}
+
+#recsCard {
+  background-color: #11100E;
+  border: none;
+  border-radius: 30px;
+  margin-bottom: 5%;
+}
+
+#recsCard img {
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+}
+
+.card-text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 90%;
+  color: #FEFCF4;
+}
+
+.seeAllButton{
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 100%;
+  color: #11100E;
+  padding: 1% 2%;
+}
+
+.hover-underline {
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 100%;
+  color: #11100E;
+  padding: 1% 2%;
+  position: relative;
+  display: inline-block;
+}
+
+.hover-underline::after,
+.hover-underline::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, #157267, #00F0EF);
+  bottom: -2px;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s ease-out;
+}
+
+.hover-underline::before {
+  top: -2px;
+  transform-origin: left;
+}
+
+.hover-underline:hover::after,
+.hover-underline:hover::before {
+  transform: scaleX(1);
+}
+
+
+/* INFO SECTION */
+.ourInfo{
+  background-color: #157267;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+#infoCardHeading {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 110%;
+  color: #11100E;
+}
+
+#infoCardText{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 90%;
+  color: #11100E;
+  margin: 0;
+}
+
+.infoCard {
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  padding: 2%;
+  background-color: #43B6AF;
+  border-radius: 30px;
+  width: 30%;
+}
+
+.infoCard i{
+  font-size: 300%;
+  color: #157267;
+  margin-bottom: 5%;
+}
+
+#iconMinorContactUs{
+  font-size: 100%;
+  color: #11100E;
+}
+
+.infoCardRow{
+  gap: 5%;
+}
+
+
+/* Movie of The Month Section */
+.movieOfTheMonth{
+  background-color: #FEFCF4;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.motmTextContainer{
+  text-align: left;
+  align-items: center;
+  align-content: center;
+  margin-bottom: 5%;
+}
+
+#viewMoreButton{
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 100%;
+  color: #FEFCF4;
+  padding: 1% 2%;
+}
+
+.holographicContainer {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.holographicCard {
+  width: 15em;
+  height: 4em;
+  background: #11100E;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 80px;
+  transition: all 0.5s ease;
+}
+
+.holographicCard a {
+  color: #00F0EF;
+  font-size: 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.holographicCard::before {
+  content: '';
+  position: absolute;
+  top: -60%;
+  left: -60%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    0deg, 
+    transparent, 
+    transparent 30%, 
+    rgba(0,255,255,0.3)
+  );
+  transform: rotate(-45deg);
+  transition: all 0.5s ease;
+  opacity: 0;
+}
+
+.holographicCard:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 1em #157267;
+}
+
+.holographicCard:hover::before {
+  opacity: 1;
+  transform: rotate(-45deg) translateY(140%);
+}
+
+.motmText p{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 00;
+  font-size: 110%;
+  color: #11100E;
+  margin-bottom: 2em;
+  margin-top: 2em;
+  padding-right: 7%;
+}
