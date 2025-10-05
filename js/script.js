@@ -16,7 +16,7 @@ async function fetchMovies() {
 
         const data = await response.json();
 
-        console.log(data);
+       
 
         recCards.forEach((card, index) => {
             const movie = data.results[index];

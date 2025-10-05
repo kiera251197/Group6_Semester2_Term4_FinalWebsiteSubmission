@@ -1,5 +1,20 @@
-const libraryCards = document.querySelectorAll('#libraryCard'); 
-const libraryApiUrl = 'https://api.themoviedb.org/3/movie/top_rated';
+//Movie class + array 
+class Movies
+{
+  constructor( title , synopsis , poster, link ,genreId)
+  {
+      this.title = title;
+        this. synopsis =  synopsis;
+        this.poster =poster;
+        this.link = link;
+        this.genreId= genreId;
+      
+      
+   }
+}
+let movieList= [];
+
+//genre map for refrencing 
 
 const genreMap = 
 {
@@ -9,6 +24,10 @@ const genreMap =
     9648: "Mystery", 10749: "Romance", 878: "Sci-Fi", 10770: "TV Movie",
     53: "Thriller", 10752: "War", 37: "Western"
 };
+
+const libraryCards = document.querySelectorAll('#libraryCard'); 
+//API
+const libraryApiUrl = 'https://api.themoviedb.org/3/movie/top_rated';
 
 async function fetchLibraryMovies() {
     try {
@@ -21,17 +40,18 @@ async function fetchLibraryMovies() {
 
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         const data = await response.json();
-
+        console.log(data);
         libraryCards.forEach((card, index) => {
             const movie = data.results[index];
             if (!movie) return;
-
-            const title = movie.title || movie.name;
-            const synopsis = movie.overview || "No synopsis available";
-            const poster = movie.poster_path
+            // get info from api and full array
+            let title = movie.title || movie.name;
+            let synopsis = movie.overview || "No synopsis available";
+            let poster = movie.poster_path
                 ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
                 : '../assets/img/tangled placeholder image.jpg';
-            const link = `https://www.themoviedb.org/movie/${movie.id}`;
+            let link = `https://www.themoviedb.org/movie/${movie.id}`;
+            let genreId = movie.genre_ids[0];
 
             const imgEl = card.querySelector('img');
             if (imgEl) {
@@ -39,6 +59,7 @@ async function fetchLibraryMovies() {
                 imgEl.alt = `${title} Poster`;
             }
 
+            //full card
             const titleEl = card.querySelector('.movieTitle');
             if (titleEl) titleEl.textContent = title;
 
@@ -50,15 +71,17 @@ async function fetchLibraryMovies() {
 
             const genreEl = card.querySelector('.genreText');
             if (genreEl) {
-                const firstGenreId = movie.genre_ids[0];
-                genreEl.textContent = genreMap[firstGenreId] || "Unknown";
+                genreEl.textContent = genreMap[genreId] || "Unknown";
             }
 
             const yearEl = card.querySelector('.yearText');
             if (yearEl) {
                 yearEl.textContent = movie.release_date ? movie.release_date.slice(0, 4) : "N/A";
             }
+              movieList.push(window["movie_"+index] = new Movies(title , synopsis , poster, link ,genreId));
+                
         });
+                console.log(movieList);
 
     } catch (error) {
         console.error("Error fetching library movies:", error);
@@ -67,8 +90,37 @@ async function fetchLibraryMovies() {
 
 fetchLibraryMovies();
 
+
+//filter movie dropdown 
 function sortByGenre()
 {
- console.log("hi");
-}
+ const selectedGenre = document.getElementById("dropdownGenre").value;
+ const byGenre = movieList.filter(movies => movies.genreId==selectedGenre);
+ console.log(byGenre);
+
+  const container = document.getElementById("movieContainer");
+  container.innerHTML = "";
+
+  byGenre.forEach(Movies => {
+    const card = `
+      <div class="col col-lg-3 col-md-6 align-items-stretch h-100">
+        <img src="${Movies.image}" class="card-img-top" alt="${Movies.title}" style="border-top-left-radius: 25px; border-top-right-radius: 25px;">
+        <div class="card-body libraryCardBody">
+          <h3 class="movieTitle">${Movies.title}</h3>
+          <h6 class="genreAndYear">
+            <i class="fa-solid fa-film"></i> <p class="genreText">${Movies.genre}</p>
+            <i class="fa-solid fa-calendar" style="margin-left: 30px;"></i> <p class="yearText">${Movies.year}</p>
+          </h6>
+          <p class="cardText">${Movies.synopsis}</p>
+          <div class="libraryCardButtons">
+            <a href="#" class="btn btn-primary holographicCard" style="margin: 0;"><i class="fa-solid fa-plus"></i> Watchlist</a>
+            <a href="../pages/individual.html" class="btn btn-primary holographicCard" style="margin: 0;">More Info</a>
+          </div>
+        </div>
+      </div>
+    `;
+    container.insertAdjacentHTML("beforeend", card);
+  });
+
+ }
 

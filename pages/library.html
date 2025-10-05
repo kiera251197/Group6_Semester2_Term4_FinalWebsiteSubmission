@@ -38,26 +38,26 @@
         
                 <!-- SortBy Dropdown -->
                 <div class="sortByDropdown">
-                    <select class="formSelect" aria-label="Default select example" onchange="sortByGenre()">
+                    <select class="formSelect" aria-label="Default select example" onchange="sortByGenre()"  id="dropdownGenre">
                         <option selected>Sort By</option>
-                        <option value="1" >Action</option>
-                        <option value="2" >Comedy</option>
-                        <option value="3" >Drama</option>
-                        <option value="4" >Horror</option>
-                        <option value="5" >Romance</option>
-                        <option value="6" >Sci-Fi</option>
-                        <option value="7" >Documentary</option>
-                        <option value="8" >Animation</option>
-                        <option value="9" >Fantasy</option>
-                        <option value="10" >Thriller</option>
-                        <option value="11" >Crime</option>
-                        <option value="12">Mystery</option>
+                        <option value="28" >Action</option>
+                        <option value="12" >Adventure</option>
+                        <option  value="16" >Animation</option>
+                        <option value="35" >Comedy</option>
+                        <option value="80" >Crime</option>
+                        <option value="99" >Documentary</option>
+                        <option  value="18" >Drama</option>
+                        <option  value="10751" >Family</option>
+                        <option  value="14" >Fantasy</option>
+                        <option  value="36" >History</option>
+                        <option  value="27" >Horror</option>
+                        <option  value="10770">Music</option>
                     </select>
                 </div>
             </div>
         </div>
 
-        <div class="container-sm libraryCards">
+        <div class="container-sm libraryCards" id="movieContainer">
             <div class="row row-cols-1 row-cols-md-3 g-4 align-items-stretch">
                 <div class="col col-lg-3 col-md-6 align-items-stretch h-100" id="libraryCard">
                     <img src="../assets/img/tangled placeholder image.jpg" class="card-img-top" alt="..." style="border-top-left-radius: 25px; border-top-right-radius: 25px;">
