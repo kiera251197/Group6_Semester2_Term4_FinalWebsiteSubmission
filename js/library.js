@@ -1,7 +1,8 @@
 const libraryCards = document.querySelectorAll('#libraryCard'); 
 const libraryApiUrl = 'https://api.themoviedb.org/3/movie/top_rated';
 
-const genreMap = {
+const genreMap = 
+{
     28: "Action", 12: "Adventure", 16: "Animation", 35: "Comedy",
     80: "Crime", 99: "Documentary", 18: "Drama", 10751: "Family",
     14: "Fantasy", 36: "History", 27: "Horror", 10402: "Music",
@@ -65,4 +66,9 @@ async function fetchLibraryMovies() {
 }
 
 fetchLibraryMovies();
+
+function sortByGenre()
+{
+ console.log("hi");
+}
 
