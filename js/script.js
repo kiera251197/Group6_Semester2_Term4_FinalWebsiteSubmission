@@ -114,6 +114,3 @@ async function fetchMovies() {
 
 
 fetchMovies();
-
-
-
