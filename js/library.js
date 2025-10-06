@@ -93,14 +93,16 @@ async function fetchLibraryMovies() {
 function sortByGenre()
 {
  const selectedGenre = document.getElementById("dropdownGenre").value;
- const byGenre = movieList.filter(movies => movies.genreId==selectedGenre);
- console.log(byGenre);
- const container = document.getElementById("movieContainer");
- container.innerHTML = "";
-
-  byGenre.forEach((Movies) => {
-    let movieGenre = 
-    container.innerHTML += `<div class="col col-lg-3 col-md-6 align-items-stretch h-100" id="libraryCard">
+ let byGenre;
+ if(selectedGenre>0)
+  {
+    byGenre = movieList.filter(movies => movies.genreId==selectedGenre);
+    
+     console.log(byGenre);
+     const container = document.getElementById("movieContainer");
+     container.innerHTML = "";
+     byGenre.forEach((Movies) => {
+      container.innerHTML += `<div class="col col-lg-3 col-md-6 align-items-stretch h-100" id="libraryCard">
                     <img src="https://image.tmdb.org/t/p/w500${Movies.poster}" class="card-img-top" alt="${Movies.title} poster"  style="border-top-left-radius: 25px; border-top-right-radius: 25px;">
                     <div class="card-body libraryCardBody">
                         <!-- Movie Title -->
@@ -109,7 +111,7 @@ function sortByGenre()
                         <!-- Genre & Release Year -->
                         <h6 class="genreAndYear">
                             <i class="fa-solid fa-film"></i>
-                            <p class="genreText">${genreMap[Movies.genre]}</p>
+                            <p class="genreText">${genreMap[Movies.genreId]}</p>
 
                             <i class="fa-solid fa-calendar" style="margin-left: 30px;"></i>
                             <p class="yearText"> ${Movies.year} </p>
@@ -127,8 +129,14 @@ function sortByGenre()
                 </div>
       
     `;
-    
   });
+  }
+  else
+  {
+      fetchLibraryMovies();
+  }
+ 
+
 
  }
 
