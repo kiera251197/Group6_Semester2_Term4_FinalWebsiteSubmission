@@ -1,4 +1,3 @@
-// Movie class + array 
 class Movies {
   constructor(title, synopsis, poster, link, genreId, year) {
     this.title = title;
@@ -9,9 +8,10 @@ class Movies {
     this.year = year;
   }
 }
+
 let movieList = [];
 
-// genre map for referencing
+
 const genreMap = {
   28: "Action", 12: "Adventure", 16: "Animation", 35: "Comedy",
   80: "Crime", 99: "Documentary", 18: "Drama", 10751: "Family",
@@ -21,7 +21,7 @@ const genreMap = {
 };
 
 const libraryApiUrl = "https://api.themoviedb.org/3/movie/top_rated";
-
+const minMovies = 40; 
 
 function buildMovieCard(movieObj) {
   return `
@@ -49,45 +49,49 @@ function buildMovieCard(movieObj) {
 async function fetchLibraryMovies() {
   const container = document.getElementById("movieContainer");
   container.innerHTML = "<p>Loading movies...</p>";
+  movieList = [];
 
   try {
-    const response = await fetch(`${libraryApiUrl}?language=en-US&page=1`, {
-      headers: {
-        Authorization: `Bearer ${apiKey}`, 
-        "Content-Type": "application/json"
-      }
-    });
+    let page = 1;
+    let totalPages = 1;
 
-    console.log("Response status:", response.status);
+    while (movieList.length < minMovies && page <= totalPages) {
+      const response = await fetch(`${libraryApiUrl}?language=en-US&page=${page}`, {
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+          "Content-Type": "application/json"
+        }
+      });
 
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-    const data = await response.json();
-    console.log("Fetched data:", data);
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+      const data = await response.json();
 
-    container.innerHTML = ""; 
-    movieList = [];
+      totalPages = data.total_pages;
 
-    data.results.forEach((movie) => {
-      let title = movie.title || movie.name;
-      let synopsis = movie.overview || "No synopsis available";
-      let poster = movie.poster_path
-        ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
-        : "../assets/img/tangled.jpg";
-      let link = `https://www.themoviedb.org/movie/${movie.id}`;
-      let genreId = movie.genre_ids && movie.genre_ids.length > 0 ? movie.genre_ids[0] : null;
-      let year = movie.release_date ? movie.release_date.split("-")[0] : "Unknown";
+      data.results.forEach((movie) => {
+        if (movieList.length >= minMovies) return;
 
-      const newMovie = new Movies(title, synopsis, poster, link, genreId, year);
-      movieList.push(newMovie);
+        let title = movie.title || movie.name;
+        let synopsis = movie.overview || "No synopsis available";
+        let poster = movie.poster_path
+          ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+          : "../assets/img/tangled.jpg";
+        let link = `https://www.themoviedb.org/movie/${movie.id}`;
+        let genreId = movie.genre_ids && movie.genre_ids.length > 0 ? movie.genre_ids[0] : null;
+        let year = movie.release_date ? movie.release_date.split("-")[0] : "Unknown";
 
-      container.innerHTML += buildMovieCard(newMovie);
-    });
+        movieList.push(new Movies(title, synopsis, poster, link, genreId, year));
+      });
+
+      page++;
+    }
+
+    container.innerHTML = movieList.map(buildMovieCard).join("");
 
   } catch (error) {
     console.error("Error fetching movies:", error);
     container.innerHTML = `<p>Error loading movies: ${error.message}</p>`;
   }
 }
-
 
 document.addEventListener("DOMContentLoaded", fetchLibraryMovies);
