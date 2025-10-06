@@ -33,8 +33,63 @@
 }
 
 #recsCard img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
+}
+
+.recsCards .col {
+  display: flex;     
+}
+
+.recsCards .card {
+  flex: 1 1 auto;     
+}
+
+.more-info-btn{
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 100%;
+  width: 60%;
+  height: 110%;
+  color: #11100E;
+  background-color: #43B6AF;
+  outline: none;
+  padding: 1% 2%;
+  border-radius: 50px;
+  border: none;
+}
+
+.more-info-btn:hover{
+  background-color: #157267;
+  color: #FEFCF4;
+  text-decoration: none;
+  outline: none;
+  border: none;
+  font-weight: 600;
+}
+
+.card-body{
+  padding: 7% 7%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 90%;
+  color: #FEFCF4;
+
+  display: -webkit-box;       
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;    
+  overflow: hidden;             
+  text-overflow: ellipsis;     
 }
 
 .card-text {
