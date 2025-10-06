@@ -1,0 +1,74 @@
+.HeroSection {
+    background-color: #43B6AF;
+    color: #FEFCF4;
+    padding: 20px 0;
+    height: auto;
+    text-align: center;
+}
+
+.HeroSection img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.MovieList {
+     background-color: #43B6AF !important; 
+    color: #FEFCF4;
+    padding: 40px 0 !important; 
+    min-height: 100px !important;
+}
+
+.MovieList .container {
+    background-color: transparent !important; 
+}
+
+.MovieListHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.MovieSectionTitle h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 600;
+    color: inherit;
+}
+
+
+.MovieListFilter .btn {
+    background-color: #2C8B83;
+    border: none;
+}
+.MovieListFilter .btn:hover {
+    background-color: #00F0EF;
+    color: #11100E;
+}
+.MovieSearchForm input {
+    background-color: #FEFCF4;
+    color: #000;
+}
+
+.MovieSearchForm {
+  position: relative;
+}
+
+.MovieSearchForm .search-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #2C8B83; /* Match your theme */
+  pointer-events: none; /* So click doesn't trigger anything */
+}
+
+.MovieSearchForm .btn {
+    background-color: #2C8B83;
+    color: #FEFCF4;
+    border: none;
+}
+
