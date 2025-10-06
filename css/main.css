@@ -99,6 +99,37 @@
   color: #FEFCF4;
 }
 
+.cardText {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 90%;
+  color: #000000;
+
+  display: -webkit-box;       
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;    
+  overflow: hidden;             
+  text-overflow: ellipsis;
+  margin-bottom: 10px;     
+}
+
+.libraryCardBody .movieTitle {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; 
+    overflow: visible;
+    text-overflow: ellipsis;
+    min-height: 3em; 
+    margin-bottom: 50px;
+}
+
+.genreAndYear {
+    display: flex;
+    align-items: center;   
+    gap: 10px;             
+    flex-wrap: wrap;       
+}
+
 .seeAllButton{
   text-decoration: none;
   font-family: 'Montserrat', sans-serif;
