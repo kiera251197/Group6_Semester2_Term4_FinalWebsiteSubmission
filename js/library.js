@@ -101,25 +101,35 @@ function sortByGenre()
   const container = document.getElementById("movieContainer");
   container.innerHTML = "";
 
-  byGenre.forEach(Movies => {
-    const card = `
-      <div class="col col-lg-3 col-md-6 align-items-stretch h-100">
-        <img src="https://image.tmdb.org/t/p/w500${Movies.poster}" class="card-img-top" alt="${Movies.title}" style="border-top-left-radius: 25px; border-top-right-radius: 25px;">
-        <div class="card-body libraryCardBody">
-          <h3 class="movieTitle">${Movies.title}</h3>
-          <h6 class="genreAndYear">
-            <i class="fa-solid fa-film"></i> <p class="genreText">${Movies.genre}</p>
-            <i class="fa-solid fa-calendar" style="margin-left: 30px;"></i> <p class="yearText">${Movies.year}</p>
-          </h6>
-          <p class="cardText">${Movies.synopsis}</p>
-          <div class="libraryCardButtons">
-            <a href="#" class="btn btn-primary holographicCard" style="margin: 0;"><i class="fa-solid fa-plus"></i> Watchlist</a>
-            <a href="../pages/individual.html" class="btn btn-primary holographicCard" style="margin: 0;">More Info</a>
-          </div>
-        </div>
-      </div>
+  byGenre.forEach((Movies) => {
+    container.innerHTML += `<div class="col col-lg-3 col-md-6 align-items-stretch h-100" id="libraryCard">
+                    <img src="https://image.tmdb.org/t/p/w500${Movies.poster}" class="card-img-top" alt="${Movies.title} poster"  style="border-top-left-radius: 25px; border-top-right-radius: 25px;">
+                    <div class="card-body libraryCardBody">
+                        <!-- Movie Title -->
+                        <h3 class="movieTitle">${Movies.title}</h3>
+
+                        <!-- Genre & Release Year -->
+                        <h6 class="genreAndYear">
+                            <i class="fa-solid fa-film"></i>
+                            <p class="genreText">${Movies.genre}</p>
+
+                            <i class="fa-solid fa-calendar" style="margin-left: 30px;"></i>
+                            <p class="yearText"> ${Movies.year} </p>
+                        </h6>
+
+                        <!-- Sypnopsis Text -->
+                        <p class="cardText">${Movies.synopsis}</p>
+
+                        <!-- Make Watchlist add button work & put movie into user's watchlist por favor -->
+                        <div class="libraryCardButtons">
+                            <a href="#######" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;"><i class="fa-solid fa-plus"></i>Watchlist</a>
+                            <a href="../pages/individual.html" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;">More Info</a>
+                        </div>
+                    </div>
+                </div>
+      
     `;
-    container.insertAdjacentHTML("beforeend", card);
+    
   });
 
  }
