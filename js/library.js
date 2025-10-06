@@ -89,5 +89,56 @@ async function fetchLibraryMovies() {
   }
 }
 
+//drop down filter
+function sortByGenre()
+{
+ const selectedGenre = document.getElementById("dropdownGenre").value;
+ let byGenre;
+ if(selectedGenre>0)
+  {
+    byGenre = movieList.filter(movies => movies.genreId==selectedGenre);
+    
+     console.log(byGenre);
+     const container = document.getElementById("movieContainer");
+     container.innerHTML = "";
+     byGenre.forEach((Movies) => {
+      container.innerHTML += `<div class="col col-lg-3 col-md-6 align-items-stretch h-100" id="libraryCard">
+                    <img src="https://image.tmdb.org/t/p/w500${Movies.poster}" class="card-img-top" alt="${Movies.title} poster"  style="border-top-left-radius: 25px; border-top-right-radius: 25px;">
+                    <div class="card-body libraryCardBody">
+                        <!-- Movie Title -->
+                        <h3 class="movieTitle">${Movies.title}</h3>
+
+                        <!-- Genre & Release Year -->
+                        <h6 class="genreAndYear">
+                            <i class="fa-solid fa-film"></i>
+                            <p class="genreText">${genreMap[Movies.genreId]}</p>
+
+                            <i class="fa-solid fa-calendar" style="margin-left: 30px;"></i>
+                            <p class="yearText"> ${Movies.year} </p>
+                        </h6>
+
+                        <!-- Sypnopsis Text -->
+                        <p class="cardText">${Movies.synopsis}</p>
+
+                        <!-- Make Watchlist add button work & put movie into user's watchlist por favor -->
+                        <div class="libraryCardButtons">
+                            <a href="#######" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;"><i class="fa-solid fa-plus"></i>Watchlist</a>
+                            <a href="../pages/individual.html" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;">More Info</a>
+                        </div>
+                    </div>
+                </div>
+      
+    `;
+  });
+  }
+  else
+  {
+      fetchLibraryMovies();
+  }
+ 
+
+
+ }
+
 
 document.addEventListener("DOMContentLoaded", fetchLibraryMovies);

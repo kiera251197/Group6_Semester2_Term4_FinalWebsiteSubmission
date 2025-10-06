@@ -1,3 +1,5 @@
+/* ----- HOMEPAGE ------ */
+
 /* RECOMENDATIONS SECTION */
 .recommendations{
   background-color: #FEFCF4;
@@ -26,6 +28,8 @@
 }
 
 #recsCard {
+  display: flex;
+  flex-direction: column;
   background-color: #11100E;
   border: none;
   border-radius: 30px;
@@ -48,36 +52,6 @@
   flex: 1 1 auto;     
 }
 
-.more-info-btn{
-  text-decoration: none;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 500;
-  font-size: 100%;
-  width: 60%;
-  height: 110%;
-  color: #11100E;
-  background-color: #43B6AF;
-  outline: none;
-  padding: 1% 2%;
-  border-radius: 50px;
-  border: none;
-}
-
-.more-info-btn:hover{
-  background-color: #157267;
-  color: #FEFCF4;
-  text-decoration: none;
-  outline: none;
-  border: none;
-  font-weight: 600;
-}
-
-.card-body{
-  padding: 7% 7%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
 .card-text {
   font-family: 'Montserrat', sans-serif;
@@ -92,12 +66,7 @@
   text-overflow: ellipsis;     
 }
 
-.card-text {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 400;
-  font-size: 90%;
-  color: #FEFCF4;
-}
+
 
 .seeAllButton{
   text-decoration: none;
@@ -195,7 +164,7 @@
 }
 
 
-/* MOVIE OF THE MONTH SECTION */
+/* Movie of The Month Section */
 .movieOfTheMonth{
   background-color: #FEFCF4;
   padding-top: 5%;
@@ -287,177 +256,186 @@
 
 
 
-/* NAVBAR */
-nav{
-  opacity: 100%;
-  background-color: #00F0EF;
+/* ----- LIBRARY ------ */
+
+/* ALL MOVIES SECTION */
+.librarySection{
+  background-color: #11100E;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 
-.navbar-brand img {
-  max-height: 60px;
-  height: auto;
-  width: auto;
+#libraryHeaderText{
+  margin: 0;
+  display: flex;
+  align-items: center;
 }
 
-.navbarContainer{
-  padding: 0 3%;
+.textAndFilter{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  padding: 2% 4%;
 }
 
-.nav-link{
-   color: #11100E;
-  font-weight: 600;
+.textAndFilter h1{
   font-family: 'Montserrat', sans-serif;
-  font-size: 100%;
+  font-weight: 600;
+  font-size: 400%;
+  color: #FEFCF4;
 }
 
-.nav-link.active{
- color: #11100E;
- font-weight: 800;
- text-decoration: underline;
+.searchAndSort{
+  display: flex;
+  align-self: center;
 }
 
-.nav-link:hover{
-  color: #FEFCF4 !important;
+.searchBar{
+  border-radius: 50px;
+  border: none;
+  padding: 6% 6%;
+  margin-right: 10%;
+  width: 330px;
+  height: 40px;
+  background-color: #157267;
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
+
+.searchBar p{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 130%;
+  color: #FEFCF4;
+  padding: 6%;
+  margin: 0;
+}
+
+.searchBar i{
+  font-size: 120%;
+  color: #FEFCF4;
+  padding: 2%;
+}
+
+.sortByDropdown{
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
+
+/* CARDS */
+#libraryCard{
+  margin-bottom: 6%;
+  align-self: center;
+  align-content: center;
+  padding: 1% 1rem;
   
 }
 
-form input.placeholder {
-  color: #157267 !important;
-  opacity: 1;
+
+.libraryCardBody{
+  background-color: #FEFCF4;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  padding: 6% 6%;
 }
 
-.form-control{
-  color: #157267 !important;
+
+.movieTitle{
   font-family: 'Montserrat', sans-serif;
-  font-weight: 500;
-  font-size: 100%;
+  font-weight: 550;
+  margin-bottom: 5%;
+  color: #11100E;
+  min-height: 3em;
+  margin-top: 15px;
 }
 
-.search-icon {
-  position: absolute;
-  left: 15px;
-  top: 30%;
-  color: #157267;
-  pointer-events: none;
-  font-size: 1rem;
-}
-
-
-
-/* SLIDER */
-.carousel-item{
-  height: 770px;
-}
-
-
-
-/* FOOTER */
-.footer {
-  background-color: #11100E;
-  color: #fefcf4;
-  padding: 40px 20px;
-}
-
-.footerRow{
+.genreAndYear{
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   align-items: center;
-  width: 100%;
-}
-
-.footer-img {
-  display: flex;
-  justify-content: center; 
-  max-height: 100px;
-  width: auto;
-  height: auto;
-  padding: 10px;
-}
-
-#iconSocials{
-  font-size: 50px;
-  color: #FEFCF4;
-}
-
-.social-icon{
-  margin-bottom: 10%; 
-}
-
-.social-icon a{
-  text-decoration: none !important; 
-  outline: none;
-}
-
-.social-icon i{
-  padding: 1% 0;
-  padding-right: 10%;
-}
-
-.navigationLinks a{
-  color: #FEFCF4;
-  text-decoration: none;
-  font-size: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  padding-left: 10rem;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 500;
-}
-
-.navigationLinks a:hover{
-  color: #43B6AF;
-  text-decoration: none;
-  font-size: 20px;
-  font-weight: 700;
-}
-
-.navigationLinks a.active{
-  color: #FEFCF4;
-  text-decoration: underline;
-  font-size: 20px;
-  font-weight: 700;
-  font-family: 'Montserrat', sans-serif;
-
-}
-
-.navigationLinks a{
-  padding: 1% 0;
-}
-
-.otherPages {
-  color: #FEFCF4;
-  text-decoration: none;
-  font-size: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; 
-  font-weight: 500;
-  font-family: 'Montserrat', sans-serif;
-}
-
-p{
+  align-content: center;
+  gap: 4px;
   margin: 0;
   padding: 0;
 }
 
-.otherPages p{
-  padding: 1% 0;
-}
-
-.otherPages p:hover{
-  color: #43B6AF;
-  text-decoration: none;
-  font-size: 20px;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.terms{
-  color: #157267;
-  text-align: right;
-  font-weight: 500;
+.genreAndYear p{
+  margin: 0px;
   font-family: 'Montserrat', sans-serif;
-  pointer-events: none;
+  font-weight: 600;
+  font-size: 90%;
+  color: #157267;
+  padding-right: 2%;
 }
+
+.genreAndYear i{
+  color: #157267;
+  margin-right: 4%;
+  font-size: 130%;
+}
+
+.cardText {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 100%;
+  color: #11100E;
+  margin-top: 5%;
+  display: -webkit-box;     
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;    
+  overflow: hidden;             
+  text-overflow: ellipsis;      
+}
+
+
+.libraryCardButtons{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}
+
+.libraryCardButtons i{
+  margin-right: 5%;
+  font-size: 110%;
+  color: #FEFCF4;
+}
+
+#watchlistButton{
+  margin-right: 5%;
+  background-color: #11100E;
+  border: none;
+  border-radius: 50px;
+  height: 200%;
+  width: 45%;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 90%;
+  color: #FEFCF4;
+  padding: 4% 2%;
+}
+
+
+
+/* ----- WATCHLIST ------ */
+/* MY WATCHLIST SECTION */
+.watchlistHeader{
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+}
+
+#watchlistHeaderText{
+  margin: 0;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 400%;
+  color: #FEFCF4;
+}
+
