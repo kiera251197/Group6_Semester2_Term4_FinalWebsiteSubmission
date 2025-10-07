@@ -85,7 +85,7 @@ async function fetchMovies() {
             const link = `https://www.themoviedb.org/movie/${movie.id}`;
 
 
-            // Populate card
+            
             const imgEl = card.querySelector('img');
             imgEl.src = poster;
             imgEl.alt = `${title} Poster`;
@@ -93,12 +93,12 @@ async function fetchMovies() {
             const textEl = card.querySelector('.card-text');
             textEl.textContent = synopsis;
 
-            // Remove old link if exists
+            
             const cardBody = card.querySelector('.card-body');
             const oldLink = cardBody.querySelector('a');
             if (oldLink) oldLink.remove();
 
-            // Add "More Info" button
+            
             const linkEl = document.createElement('a');
             linkEl.href = link;
             linkEl.target = '_blank';
