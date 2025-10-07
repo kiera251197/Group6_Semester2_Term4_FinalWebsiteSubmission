@@ -14,7 +14,6 @@
 }
 
 #recommendationsCard{
-  margin-bottom: 3%;
   align-self: center;
   align-content: center;
   padding: 1% 1rem;
@@ -586,7 +585,7 @@ form input.placeholder {
 
 /* SLIDER */
 .carousel-item{
-  height: 770px;
+  height: 100%;
 }
 
 
