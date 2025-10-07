@@ -87,7 +87,6 @@
   font-weight: 400;
   font-size: 90%;
   color: #FEFCF4;
-
   display: -webkit-box;       
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 4;    
@@ -314,7 +313,7 @@
 
 /* ALL MOVIES SECTION */
 .librarySection{
-  background-color: #157267;
+  background-image: linear-gradient(to bottom, #157267, #11100E);
   justify-content: center;
   align-items: center;
   align-content: center;
@@ -414,12 +413,16 @@
   padding: 1% 1rem;
 }
 
-
 .libraryCardBody{
   background-color: #FEFCF4;
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;
   padding: 6% 6%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  align-items: flex-start;
 }
 
 .libraryCard{
@@ -478,12 +481,34 @@
   justify-content: space-between;
   align-items: center;
   align-content: center;
+  width: 100%;
 }
 
 .libraryCardButtons i{
   margin-right: 5%;
   font-size: 100%;
   color: #FEFCF4;
+}
+
+.btn-primary{
+  background-color: #157267;
+  border: none;
+  padding: 5% 0;
+  width: 45%;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 90%;
+  color: #FEFCF4;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+.btn-primary:hover{
+  background-color: #157267;
+  color: #FEFCF4;
+  text-decoration: none;
 }
 
 /* #watchlistButton{
