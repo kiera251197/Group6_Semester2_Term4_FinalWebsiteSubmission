@@ -533,7 +533,7 @@
 
 
 /* ----- WATCHLIST ------ */
-/* MY WATCHLIST SECTION */
+/* WATCHLIST SECTION */
 .watchlistHeader{
   justify-content: center;
   align-items: center;
@@ -543,13 +543,38 @@
 
 #watchlistHeaderText{
   margin: 0;
-  padding-top: 5%;
-  padding-bottom: 5%;
+  padding-top: 3%;
+  padding-bottom: 3%;
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
   font-size: 400%;
   color: #FEFCF4;
 }
+
+#libraryCard{
+  align-self: center;
+  align-content: center;
+  padding: 1% 1rem;
+}
+
+.libraryCardBody{
+  background-color: #FEFCF4;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  padding: 6% 6%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  align-items: flex-start;
+}
+
+.libraryCard{
+  margin-bottom: 3%;
+}
+
+
+
 
 /* NAVBAR */
 nav{
@@ -605,7 +630,6 @@ form input.placeholder {
   pointer-events: none;
   font-size: 1rem;
 }
-
 
 
 /* SLIDER */
