@@ -115,3 +115,8 @@ async function fetchMovies() {
 
 fetchMovies();
 
+//Form Validation
+var input = document.getElementById('exampleInputUsername');
+input.oninvalid = function(event){
+  event.target.setCustomValidity("Name must be at least 2 characters long and only contain letters.");
+};
