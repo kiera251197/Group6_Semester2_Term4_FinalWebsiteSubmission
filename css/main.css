@@ -751,3 +751,183 @@ p{
   font-family: 'Montserrat', sans-serif;
   pointer-events: none;
 }
+
+
+
+
+
+
+
+
+/* INDIVIDUAL MOVIE PAGE */
+
+/* Section - IndivMov */
+.individualMovieSection{
+  background-image: linear-gradient(to bottom, #157267, #11100E);
+  padding-top: 5%;
+  padding-bottom: 7%;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.individualMovieRow{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+/* Image - IndivMov */
+.moviePosterDiv img{
+  border-radius: 30px;
+  max-width: 100%;
+  height: auto;
+  box-shadow: rgba(0, 0, 0, 0.59) 0px 5px 15px;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+
+.moviePosterDiv{
+  padding: 0 5%;
+}
+
+.moviePoster{
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+}
+
+/* Text - IndivMov */
+.alignItemsHorizontal{
+  display: flex;
+  flex-direction: row;
+  padding: 1.5% 0;
+  align-items: center;
+  align-content: center;
+}
+
+.indivMovInfoText{
+  color: #FEFCF4;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.indivMovInfoText h2{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 300%;
+  margin-bottom: 2%;
+}
+
+.indivMovInfoText h5{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 120%;
+}
+
+#textH5{
+  margin: 0;
+}
+
+
+/* Rating */
+.ratingMovIndivDiv i{
+  color: #FEFCF4;
+  font-size: 170%;
+  padding-right: 0.5%;
+}
+
+.ratingMovIndivDiv h5{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 150%;
+  color: #FEFCF4;
+  margin: 0;
+}
+
+
+/* Genre & Release Year */
+.genreMovIndivDiv i{
+  color: #FEFCF4;
+  font-size: 130%;
+  padding-right: 1.5%;
+}
+
+.releaseYearMovIndivDiv i{
+  color: #FEFCF4;
+  font-size: 130%;
+  padding-right: 1.5%;
+}
+
+/* Sypnopsis */
+.sypnopsisMovIndivDiv{
+  gap: 2%;
+}
+
+.sypnopsisMovIndivDiv h5{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 650;
+  font-size: 120%;
+  color: #FEFCF4;
+  margin: 0;
+}
+
+/* Trailer */
+.trailorLinkMovIndivDiv{
+  gap: 2%;
+}
+
+.trailorLinkMovIndivDiv h5{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 650;
+  font-size: 120%;
+  color: #FEFCF4;
+  margin: 0;
+}
+
+.trailorLinkMovIndivDiv a{
+  text-decoration: underline;
+  color: #FEFCF4;
+}
+
+/* Directors */
+.directorsMovIndivDiv{
+  gap: 2%;
+}
+
+.directorsMovIndivDiv h5{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 650;
+  font-size: 120%;
+  color: #FEFCF4;
+  margin: 0;
+}
+
+/* Actors */
+.actorsMovIndivDiv{
+  gap: 2%;
+}
+
+.actorsMovIndivDiv h5{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 650;
+  font-size: 120%;
+  color: #FEFCF4;
+  margin: 0;
+}
+
+/* Buttons - IndivMov */
+.buttonsMovIndivDiv{
+  display: flex;
+  gap: 6%;
+  margin-top: 5%;
+}
+
+.buttonsMovIndivDiv i{
+  padding-right: 5%;
+  font-size: 110%;
+  color: #FEFCF4;
+}
+
