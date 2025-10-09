@@ -7,7 +7,7 @@
     <meta name="author" content="Group 6 Submission">
     <meta name="keywords" content="APIs, API, movies, movie streaming, streaming, free movies, free tv shows, tv shows, IMDb, Rotten Tomatoes, Metacritic, trailers, reviews, ratings, cinema, film, entertainment, binge-watch, watch online, watch free, watch movies, watch tv shows, trending movies, trending tv shows, top movies, top tv shows, new releases, classic movies, classic tv shows, family movies, family tv shows, action movies, action tv shows, comedy movies, comedy tv shows, drama movies, drama tv shows, horror movies, horror tv shows, sci-fi movies, sci-fi tv shows, romance movies, romance tv shows, documentaries, animated movies, animated tv shows, fantasy movies, fantasy tv shows, thriller movies, thriller tv shows, crime movies, crime tv shows, mystery movies, mystery tv shows">
 
-    <title>Vortx Streaming</title>
+    <title>Movie Streaming Site</title>
     <script src="https://kit.fontawesome.com/e09304f43b.js" crossorigin="anonymous"></script>
     
     <!-- Bootstrap -->
@@ -41,14 +41,14 @@
                         <a class="nav-link" aria-current="page" href="../index.html">Home</a>
                     </li>
                     <li class="nav-item mx-3">
-                        <a class="nav-link active" href="../pages/library.html">Library</a>
+                        <a class="nav-link" href="../pages/library.html">Library</a>
                     </li>
                     <li class="nav-item mx-3">
                         <a class="nav-link" href="../pages/watchlist.html">Watchlist</a>
                     </li>
                     <!-- Make Open Sign Up Modal -->
                     <li class="nav-item mx-3">
-                        <a class="nav-link" href="../pages/signin-up.html">Sign Up</a>
+                        <a class="nav-link active" href="../pages/signin-up.html">Sign Up</a>
                     </li>
                 </ul>
 
@@ -60,87 +60,9 @@
         </div>
     </nav>
 
-    <!-- Individual Movie Page -->
-    <section class="individualMovieSection">
-        <div class="container individualMovieContainer">
-            <div class="row individualMovieRow">
-                <div class="col-12 col-lg-4">
-                    <div class="moviePosterDiv">
-                        <img src="../assets/img/tangled placeholder image.jpg" class="img-fluid moviePoster" alt="Movie Poster">
-                    </div>
+    
 
-                </div>
-                
-                <div class="col-12 col-lg-8">
-                    <div class="indivMovInfoText">
-                        <!-- Movie Name -->
-                        <h2 id="movieNameMovIndiv">Movie Name</h2>
-
-                        <!-- Rating -->
-                        <div class="ratingMovIndivDiv alignItemsHorizontal">
-                            <i class="fa-solid fa-star ratingMovIndiv"></i>
-                            <i class="fa-solid fa-star ratingMovIndiv"></i>
-                            <i class="fa-solid fa-star ratingMovIndiv"></i>
-                            <i class="fa-solid fa-star-half ratingMovIndiv"></i>
-                            <h5 id="textH5">Rating Here</h5>
-                        </div>    
-
-                        <!-- Release Year -->
-                        <div class="releaseYearMovIndivDiv alignItemsHorizontal">
-                            <i class="fa-solid fa-calendar"></i>
-                            <h5 id="textH5">Release Year Here</h5>
-                        </div> 
-                        
-                        <!-- Genre -->
-                        <div class="genreMovIndivDiv alignItemsHorizontal">
-                            <i class="fa-solid fa-film genreMovIndiv"></i>
-                            <h5 id="textH5">Genre Here</h5>
-                        </div>  
-                        
-                        <!-- Sypnopsis -->
-                        <div class="sypnopsisMovIndivDiv alignItemsHorizontal">
-                            <h5 id="textH5">Synopsis:</h5>
-                            <p>Place sypnopsis text here</p>
-                        </div>
-                        
-                        <!-- Trailer Link -->
-                        <div class="trailorLinkMovIndivDiv alignItemsHorizontal">
-                            <h5 id="textH5">Trailer:</h5>
-                            <a href="#" id="trailerLinkMovIndiv"> Watch Trailer</a>
-                        </div> 
-                        
-                        <!-- Director(s) & Actor(s) -->
-                        <div class="directorsMovIndivDiv alignItemsHorizontal">
-                            <h5 id="textH5">Director(s):</h5>
-                            <p id="directorsMovIndiv">Place director(s) here</p>
-                        </div>
-                        
-                        <div class="actorsMovIndivDiv alignItemsHorizontal">
-                            <h5 id="textH5">Actor(s):</h5>
-                            <p id="actorsMovIndiv">Place actor(s) here</p>
-                        </div>
-                        
-                        <!-- Buttons -->
-                        <div class="buttonsMovIndivDiv">
-                            <div class="holographicContainer">
-                                <div class="holographicCard">
-                                    <a href="#####" id="viewMoreButton"><i class="fa-solid fa-plus"></i>Watchlist</a>
-                                </div>
-                            </div>
-
-                            <div class="holographicContainer">
-                                <div class="holographicCard">
-                                    <a href="#####" id="viewMoreButton"><i class="fa-solid fa-play"></i>Watch Now</a>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>    
-    </section>            
-    <!-- Footer -->
+<!-- Footer -->
    <section class="footer">
         <div class="container-fluid">
             <div class="row footerRow">
@@ -158,9 +80,9 @@
             <div class="col-12 col-lg-4">
                 <div class="navigationLinks">
                     <a href="../index.html">Home</a>
-                    <a class="navigationLinks active" href="../pages/library.html">Library</a>
+                    <a href="../pages/library.html">Library</a>
                     <a href="../pages/watchlist.html">Watchlist</a>
-                    <a href="../pages/signin-up.html"> Sign Up</a>
+                    <a class="navigationLinks active" href="../pages/signin-up.html"> Sign Up</a>
                     <br>
                 </div>
             </div>
@@ -195,4 +117,4 @@
     <script src="../js/library.js"></script>
 
 </body>
-</html>
+</html>    
