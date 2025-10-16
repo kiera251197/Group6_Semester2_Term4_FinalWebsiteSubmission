@@ -44,9 +44,11 @@
 
 .sectionTitle h1{
   font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 400%;
   margin-bottom: 2rem;
+  color: #11100E;
+  text-shadow: 6px 3px 10px rgba(17, 16, 14, 0.419);
 }
 
 #recsCard {
@@ -56,6 +58,7 @@
   border: none;
   border-radius: 30px;
   margin-bottom: 5%;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 
 #recsCard img {
@@ -141,10 +144,9 @@
 
 
 
-
 /* INFO SECTION */
 .ourInfo{
-  background-color: #157267;
+  background-color: #43B6AF;
   padding-top: 5%;
   padding-bottom: 5%;
   justify-content: center;
@@ -156,14 +158,14 @@
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   font-size: 110%;
-  color: #11100E;
+  color: #FEFCF4;
 }
 
 #infoCardText{
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
   font-size: 90%;
-  color: #11100E;
+  color: #FEFCF4;
   margin: 0;
 }
 
@@ -172,7 +174,70 @@
   align-items: center;
   align-content: center;
   padding: 2%;
+  background-color: #11100E;
+  border-radius: 30px;
+  width: 30%;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.571) !important;
+}
+
+.infoCard i{
+  font-size: 300%;
+  color: #43B6AF;
+  margin-bottom: 5%;
+}
+
+#iconMinorContactUs{
+  font-size: 100%;
+  color: #FEFCF4;
+}
+
+.infoCardRow{
+  gap: 5%;
+}
+
+.emailContactUs p{
+  display: inline;
+  color: #FEFCF4;
+}
+
+.phoneContactUs p{
+  display: inline;
+  color: #FEFCF4;
+}
+
+
+
+/* INFO SECTION */
+/* .ourInfo{
   background-color: #43B6AF;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+#infoCardHeading {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 110%;
+  color: #FEFCF4;
+}
+
+#infoCardText{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 90%;
+  color: #FEFCF4;
+  margin: 0;
+}
+
+.infoCard {
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  padding: 2%;
+  background-color: #11100E;
   border-radius: 30px;
   width: 30%;
 }
@@ -185,12 +250,26 @@
 
 #iconMinorContactUs{
   font-size: 100%;
-  color: #11100E;
+  color: #FEFCF4;
 }
 
 .infoCardRow{
   gap: 5%;
 }
+
+.emailContactUs p{
+  display: inline;
+  color: #FEFCF4;
+}
+
+.phoneContactUs p{
+  display: inline;
+  color: #FEFCF4;
+}
+
+.aboutUs{
+
+} */
 
 
 
@@ -304,8 +383,6 @@
   justify-content: center; 
   align-items: center; 
 }
-
-
 
 
 
@@ -579,7 +656,8 @@
 /* NAVBAR */
 nav{
   opacity: 100%;
-  background-color: #00F0EF;
+  background: #43B6AF;
+  background: linear-gradient(0deg, rgba(67, 182, 175, 1) 0%, rgba(17, 16, 14, 1) 100%);
 }
 
 .navbar-brand img {
@@ -593,20 +671,20 @@ nav{
 }
 
 .nav-link{
-   color: #11100E;
+   color: #FEFCF4;
   font-weight: 600;
   font-family: 'Montserrat', sans-serif;
   font-size: 100%;
 }
 
 .nav-link.active{
- color: #11100E;
+ color: #FEFCF4 !important;
  font-weight: 800;
  text-decoration: underline;
 }
 
 .nav-link:hover{
-  color: #FEFCF4 !important;
+  color: #00F0EF !important;
   
 }
 
@@ -966,28 +1044,28 @@ p{
    background-image: radial-gradient(
          circle farthest-corner at var(--radial-position-1)
             var(--radial-position-2),
-         #157267 10%,
+         #FEFCF4 10%,
          rgba(57, 110, 234, 0) 50%
       ),
       radial-gradient(
          circle farthest-corner at var(--radial-position-3)
             var(--radial-position-4),
-         #11100E,
+         #157267,
          rgba(252, 0, 161, 0) 54%
       ),
       radial-gradient(
          circle farthest-corner at var(--radial-position-5)
             var(--radial-position-6),
-         #00F0EF 16%,
+         #43b6ae7e 16%,
          rgba(0, 66, 106, 0)
       ),
       radial-gradient(
          circle farthest-corner at var(--radial-position-7)
             var(--radial-position-8),
-         #43B6AF ,
+         #11100E ,
          rgba(57, 110, 234, 0)
       ),
-      linear-gradient(328deg, #157267 30%, rgba(252, 0, 161, 0));
+      linear-gradient(328deg, #43b6ae7e 30%, rgba(252, 0, 161, 0));
    color: #f3f2ef;
 }
 
