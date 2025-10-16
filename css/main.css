@@ -966,13 +966,13 @@ p{
    background-image: radial-gradient(
          circle farthest-corner at var(--radial-position-1)
             var(--radial-position-2),
-         #11100E 10%,
+         #157267 10%,
          rgba(57, 110, 234, 0) 50%
       ),
       radial-gradient(
          circle farthest-corner at var(--radial-position-3)
             var(--radial-position-4),
-         #157267,
+         #11100E,
          rgba(252, 0, 161, 0) 54%
       ),
       radial-gradient(
@@ -984,7 +984,7 @@ p{
       radial-gradient(
          circle farthest-corner at var(--radial-position-7)
             var(--radial-position-8),
-         #43B6AF,
+         #43B6AF ,
          rgba(57, 110, 234, 0)
       ),
       linear-gradient(328deg, #157267 30%, rgba(252, 0, 161, 0));
@@ -1014,22 +1014,19 @@ p{
   --color-4: #FEFCF4; /* Text */
 }
 
-body {
-  font-family: Montserrat, sans-serif;
-}
-
 .wrapper {
-  max-width: 860px;
-  min-width: 300px;
+  max-width: 100%;
+  /* min-width: 70%; */
   margin: 0 auto;
 }
 
-section {
+.sectionSignInUpModal {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: calc(100vh - 80px);
   padding: 0 20px;
+  height: 100%;
 }
 
 .formRow {
@@ -1040,9 +1037,10 @@ section {
   height: 260px;
   background-color: var(--color-3);
   box-shadow: 6px 0 15px rgba(0, 0, 0, 0.4);
+  border-radius: 20px;
 }
 
-.col {
+.colSignIn {
   flex: 1;
 }
 
@@ -1051,6 +1049,7 @@ section {
   background-color: var(--color-2);
   box-shadow: 4px 0 10px rgba(0, 0, 0, 0.4);
   z-index: 10;
+  border-radius: 30px;
 }
 
 .form {
@@ -1062,7 +1061,7 @@ section {
   justify-content: center;
 }
 
-form {
+.formSignInUp {
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -1122,12 +1121,14 @@ label span {
 
 label:focus-within span,
 .focus-span {
-  transform: translate(0.25rem, -72%) scale(0.8);
+  transform: translate(0.25rem, -72%) scale(0.7);
   background-color: var(--color-2);
+  border-radius: 50px;
 }
 
 label span {
-  font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
   position: absolute;
   left: 4px;
   top: 8px;
@@ -1145,6 +1146,15 @@ label span {
   align-items: flex-start;
 }
 
+.formRow h1{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-1);
+  margin-bottom: 20px;
+  cursor: default;
+}
+
 button {
   padding: 8px 42px;
   background-color: var(--color-2);
@@ -1156,6 +1166,20 @@ button {
   border: 2px solid #111827;
   transition-duration: 0.1s;
   font-size: 16px;
+}
+
+#login.info h2{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  color: #FEFCF4;
+  display: flex;
+  flex-direction: flex-end;
+}
+
+#sign-up.info h2{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  color: #FEFCF4;
 }
 
 .display-none {
@@ -1200,27 +1224,4 @@ button {
 
 .bounce-right {
   animation: bounceRight 1s forwards;
-}
-
-.codepen-footer {
-  font-family: "Patrick Hand", cursive;
-  font-size: 17px;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 99;
-  background-color: #232323;
-  color: white;
-  text-align: center;
-  height: 38px;
-  font-size: 21px;
-  display: flex;
-  justify-content: space-between;
-  padding: 6px 20px;
-}
-
-.codepen-footer a {
-  color: #ee7344;
-  text-decoration: none;
 }

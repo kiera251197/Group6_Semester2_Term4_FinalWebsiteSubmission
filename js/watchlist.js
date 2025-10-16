@@ -61,23 +61,31 @@ document.addEventListener("DOMContentLoaded", async () => {
       );
 
       const cardHTML = `
-        <div class="col col-lg-3 col-md-6 col-sm-12 libraryCard">
-          <img src="${newMovie.poster}" class="card-img-top" alt="${newMovie.title} poster" style="border-top-left-radius: 25px; border-top-right-radius: 25px;">
-          <div class="card-body libraryCardBody">
-            <h3 class="movieTitle">${newMovie.title}</h3>
-            <h6 class="genreAndYear">
-              <i class="fa-solid fa-film"></i>
-              <p>${genreMap[newMovie.genreId] || "N/A"}</p>
-              <i class="fa-solid fa-calendar"></i>
-              <p>${newMovie.year || "Unknown"}</p>
-            </h6>
-            <p class="cardText">${newMovie.synopsis}</p>
-            <div class="libraryCardButtons">
-              <a href="#" class="btn btn-primary holographicCard" style="margin: 0;"><i class="fa-solid fa-minus"></i> Watchlist</a>
-              <a href="${newMovie.link}" class="btn btn-primary holographicCard" style="margin: 0;" target="_blank">More Info</a>
-            </div>
-          </div>
-        </div>
+        <div class="col col-lg-3 col-md-6 align-items-stretch h-100" id="libraryCard">
+                    <img src="${newMovie.poster}" class="card-img-top" alt="${newMovie.title} poster"  style="border-top-left-radius: 25px; border-top-right-radius: 25px;">
+                    <div class="card-body libraryCardBody">
+                        <!-- Movie Title -->
+                        <h3 class="movieTitle">${newMovie.title}</h3>
+
+                        <!-- Genre & Release Year -->
+                        <h6 class="genreAndYear">
+                            <i class="fa-solid fa-film"></i>
+                            <p class="genreText">${genreMap[newMovie.genreId]}</p>
+
+                            <i class="fa-solid fa-calendar" style="margin-left: 30px;"></i>
+                            <p class="yearText"> ${newMovie.year} </p>
+                        </h6>
+
+                        <!-- Sypnopsis Text -->
+                        <p class="cardText">${newMovie.synopsis}</p>
+
+                        <!-- Make Watchlist add button work & put movie into user's watchlist por favor -->
+                        <div class="libraryCardButtons">
+                            <a href="#######" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;"><i class="fa-solid fa-plus"></i>Watchlist</a>
+                            <a href="../pages/individual.html" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;">More Info</a>
+                        </div>
+                    </div>
+                </div>
       `;
 
       cardsContainer.insertAdjacentHTML("beforeend", cardHTML);

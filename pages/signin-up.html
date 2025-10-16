@@ -66,12 +66,12 @@
 
                 <div class="wrapper">
                 <main>
-                    <section>
+                    <section class="sectionSignInUpModal">
                         <div class="formRow">
-                            <div id="col-1" class="col">
+                            <div id="col-1" class="colSignIn">
                             <div id="sign-up-form" class="form formSign">
-                                <h1>Sign Up</h1>
-                                <form onsubmit="return false;">
+                                <h1 class="hover-underline">Sign Up</h1>
+                                <form class="formSignInUp" onsubmit="return false;">
                                 <label for="email-1">
                                     <input id="email-1" name="email-1" type="email" placeholder="" autocomplete="off">
                                     <span id="span-email-1">Email</span>
@@ -84,8 +84,8 @@
                                 </form>
                             </div>
                             <div id="login-form" class="form display-none">
-                                <h1>Login</h1>
-                                <form onsubmit="return false;">
+                                <h1 class="hover-underline">Login</h1>
+                                <form class="formSignInUp" onsubmit="return false;">
                                 <label for="email-2">
                                     <input id="email-2" name="email-2" type="email" placeholder="" autocomplete="off">
                                     <span id="span-email-2">Email</span>
@@ -99,7 +99,7 @@
                                 </form>
                             </div>
                             </div>
-                            <div id="col-2" class="col">
+                            <div id="col-2" class="colSignIn">
                             <div id="login" class="info">
                                 <h2>Have an account?</h2>
                                 <button onclick="formChange('login')">Login</button>
