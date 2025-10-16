@@ -49,6 +49,14 @@
   margin-bottom: 2rem;
 }
 
+.recsCard {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4) !important;
+}
+
+.recsCard:hover {
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.5) !important;
+}
+
 #recsCard {
   display: flex;
   flex-direction: column;
@@ -87,12 +95,12 @@
   font-weight: 400;
   font-size: 90%;
   color: #FEFCF4;
-
   display: -webkit-box;       
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 4;    
   overflow: hidden;             
-  text-overflow: ellipsis;     
+  text-overflow: ellipsis; 
+  padding: 5mm;  
 }
 
 .seeAllButton{
@@ -145,7 +153,7 @@
 
 /* INFO SECTION */
 .ourInfo{
-  background-color: #157267;
+  background-color: #11100E;
   padding-top: 5%;
   padding-bottom: 5%;
   justify-content: center;
@@ -157,14 +165,14 @@
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   font-size: 110%;
-  color: #11100E;
+  color: #FEFCF4;
 }
 
 #infoCardText{
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
   font-size: 90%;
-  color: #11100E;
+  color: #FEFCF4;
   margin: 0;
 }
 
@@ -176,24 +184,31 @@
   background-color: #43B6AF;
   border-radius: 30px;
   width: 30%;
+  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.4) !important;
 }
 
 .infoCard i{
   font-size: 300%;
-  color: #157267;
+  color: #FEFCF4;
   margin-bottom: 5%;
 }
 
 #iconMinorContactUs{
   font-size: 100%;
-  color: #11100E;
+  color: #FEFCF4;
 }
 
 .infoCardRow{
   gap: 5%;
 }
 
+.emailContactUs{
+  color: #FEFCF4;
+}
 
+.phoneContactUs{
+  color: #FEFCF4;
+}
 
 
 
@@ -206,6 +221,11 @@
   align-items: center;
   align-content: center;
 }
+
+.motmImage img{
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4) !important;
+}
+
 
 .motmTextContainer{
   text-align: left;
@@ -314,7 +334,12 @@
 
 /* ALL MOVIES SECTION */
 .librarySection{
-  background-color: #157267;
+<<<<<<< HEAD
+  background-image: linear-gradient(to bottom, #157267, #11100E);
+=======
+  background: #157267;
+  background: linear-gradient(4deg, rgba(21, 114, 103, 1) 0%, rgba(0, 240, 239, 1) 100%);
+>>>>>>> a1177791a88fce1aece13334191d7b5293e357dc
   justify-content: center;
   align-items: center;
   align-content: center;
@@ -361,33 +386,7 @@
   width: 250px;
   padding: 3% 2%;
 }
-/* .searchBar{
-  border-radius: 50px;
-  border: none;
-  padding: 6% 6%;
-  margin-right: 10%;
-  width: 330px;
-  height: 40px;
-  background-color: #157267;
-  display: flex;
-  align-items: center;
-  align-content: center;
-}
 
-.searchBar p{
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 500;
-  font-size: 130%;
-  color: #FEFCF4;
-  padding: 6%;
-  margin: 0;
-} */
-
-/* .searchBar i{
-  font-size: 120%;
-  color: #FEFCF4;
-  padding: 2%;
-} */
 
 .sortByDropdown{
   display: flex;
@@ -414,12 +413,16 @@
   padding: 1% 1rem;
 }
 
-
 .libraryCardBody{
   background-color: #FEFCF4;
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;
   padding: 6% 6%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  align-items: flex-start;
 }
 
 .libraryCard{
@@ -478,12 +481,35 @@
   justify-content: space-between;
   align-items: center;
   align-content: center;
+  width: 100%;
 }
 
 .libraryCardButtons i{
   margin-right: 5%;
   font-size: 100%;
   color: #FEFCF4;
+}
+
+<<<<<<< HEAD
+.btn-primary{
+  background-color: #157267;
+  border: none;
+  padding: 5% 0;
+  width: 45%;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 90%;
+  color: #FEFCF4;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+.btn-primary:hover{
+  background-color: #157267;
+  color: #FEFCF4;
+  text-decoration: none;
 }
 
 /* #watchlistButton{
@@ -507,6 +533,8 @@
 
 
 
+=======
+>>>>>>> a1177791a88fce1aece13334191d7b5293e357dc
 /* ----- WATCHLIST ------ */
 /* MY WATCHLIST SECTION */
 .watchlistHeader{
@@ -529,7 +557,8 @@
 /* NAVBAR */
 nav{
   opacity: 100%;
-  background-color: #00F0EF;
+ background: #157267;
+background: linear-gradient(0deg,rgba(21, 114, 103, 1) 0%, rgba(17, 16, 14, 1) 100%);
 }
 
 .navbar-brand img {
@@ -543,20 +572,20 @@ nav{
 }
 
 .nav-link{
-   color: #11100E;
+   color: #FEFCF4;
   font-weight: 600;
   font-family: 'Montserrat', sans-serif;
   font-size: 100%;
 }
 
 .nav-link.active{
- color: #11100E;
+ color: #FEFCF4 !important;
  font-weight: 800;
  text-decoration: underline;
 }
 
 .nav-link:hover{
-  color: #FEFCF4 !important;
+  color: #00F0EF !important;
   
 }
 
