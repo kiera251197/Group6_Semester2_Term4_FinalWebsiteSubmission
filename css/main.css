@@ -941,7 +941,7 @@ p{
    bottom: 0%;
    z-index: -1;
    width: 100vw;
-   height: 100vh;
+   height: 101%;
    flex-direction: row;
    justify-content: space-between;
    flex-wrap: wrap;
@@ -1077,9 +1077,10 @@ input {
   border-radius: 3px;
   line-height: 2;
   padding: 4px 8px;
-  font-weight: bold;
   font-size: 16px;
   box-shadow: 0.3rem 0.3rem #111827;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
 }
 
 input:focus {
@@ -1155,7 +1156,7 @@ label span {
   cursor: default;
 }
 
-button {
+.info button {
   padding: 8px 42px;
   background-color: var(--color-2);
   margin-top: 15px;
