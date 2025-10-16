@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                         <!-- Make Watchlist add button work & put movie into user's watchlist por favor -->
                         <div class="libraryCardButtons">
-                            <a href="#######" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;"><i class="fa-solid fa-plus"></i>Watchlist</a>
+                            <a href="#######" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;"><i class="fa-solid fa-minus"></i>Watchlist</a>
                             <a href="../pages/individual.html" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;">More Info</a>
                         </div>
                     </div>
