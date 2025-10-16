@@ -1,0 +1,7 @@
+We implemented these jQuery plugins:
+
+Ambient Gradient on Sign Up/Log In: 
+Ambient moving gradient background w/mouse awareness [IN-PROG]. (n.d.). CodePen. Retrieved October 9, 2025, from https://codepen.io/mgrace/pen/eYymxZg
+
+Login/Sign Up form:
+Login and Signup form. (n.d.). CodePen. Retrieved October 11, 2025, from https://codepen.io/rahul-pxl/pen/MqdJmX
