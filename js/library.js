@@ -1,14 +1,19 @@
 // Movie class + array 
 class Movies {
-  constructor(title, synopsis, poster, link, genreId, year) {
+  constructor(title, synopsis, poster, link, genreId, year, id , lang ) {
     this.title = title;
     this.synopsis = synopsis;
     this.poster = poster;
     this.link = link;
     this.genreId = genreId;
     this.year = year;
+    this.id = id;
+    this.year =lang;
+    
   }
 }
+
+
 let movieList = [];
 
 // genre map for referencing
@@ -38,12 +43,28 @@ function buildMovieCard(movieObj) {
         <p class="cardText">${movieObj.synopsis}</p>
         <div class="libraryCardButtons">
           <a href="#######" class="btn btn-primary holographicCard" style="margin: 0;"><i class="fa-solid fa-plus"></i> Watchlist</a>
-          <a href="../pages/individual.html" class="btn btn-primary holographicCard" style="margin: 0;">More Info</a>
+          <a href="../pages/individual.html" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;" onclick="saveClass('${movieObj.title}' , '${movieObj.year}','${movieObj.synopsis}','${genreMap[movieObj.genreId] || "Unknown"}' ,${movieObj.poster} ,'${movieObj.id}','${movieObj.lang}' ) ">More Info</a>
         </div>
       </div>
     </div>
   `;
 }
+
+
+
+function saveClass(individualTitle,individualYear,individualSynopsis,individualGenre,individualPoster,individualID,individualLang)
+{
+  localStorage.setItem('savedMovieTitle', individualTitle);
+  localStorage.setItem('savedMovieYear', individualYear);
+  localStorage.setItem('savedSynopsis', individualSynopsis);
+  localStorage.setItem('savedGenre', individualGenre);
+  localStorage.setItem('savedMoviePoster', individualPoster);
+  localStorage.setItem('savedMovieID', individualID);
+  localStorage.setItem('savedMovieLang', individualLang);
+}
+
+
+
 
 
 async function fetchLibraryMovies() {
@@ -62,11 +83,11 @@ async function fetchLibraryMovies() {
 
     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
     const data = await response.json();
+    console.log(data);
     console.log("Fetched data:", data);
 
     container.innerHTML = ""; 
     movieList = [];
-
     data.results.forEach((movie) => {
       let title = movie.title || movie.name;
       let synopsis = movie.overview || "No synopsis available";
@@ -76,9 +97,11 @@ async function fetchLibraryMovies() {
       let link = `https://www.themoviedb.org/movie/${movie.id}`;
       let genreId = movie.genre_ids && movie.genre_ids.length > 0 ? movie.genre_ids[0] : null;
       let year = movie.release_date ? movie.release_date.split("-")[0] : "Unknown";
-
-      const newMovie = new Movies(title, synopsis, poster, link, genreId, year);
+      let id = movie.id
+      let lang = movie.original_language
+      const newMovie = new Movies(title, synopsis, poster, link, genreId, year ,id ,lang);
       movieList.push(newMovie);
+      
 
       container.innerHTML += buildMovieCard(newMovie);
     });
@@ -96,7 +119,7 @@ function sortByGenre()
  let byGenre;
  if(selectedGenre>0)
   {
-    byGenre = movieList.filter(movies => movies.genreId==selectedGenre);
+     byGenre = movieList.filter(movies => movies.genreId==selectedGenre);
     
      console.log(byGenre);
      const container = document.getElementById("movieContainer");
@@ -123,11 +146,10 @@ function sortByGenre()
                         <!-- Make Watchlist add button work & put movie into user's watchlist por favor -->
                         <div class="libraryCardButtons">
                             <a href="#######" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;"><i class="fa-solid fa-plus"></i>Watchlist</a>
-                            <a href="../pages/individual.html" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;">More Info</a>
+                            <a href="../pages/individual.html" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;" onclick="fullIndividual()  ">More Info</a>
                         </div>
                     </div>
                 </div>
-      
     `;
   });
   }
@@ -135,10 +157,89 @@ function sortByGenre()
   {
       fetchLibraryMovies();
   }
- 
-
-
  }
+//get libary movies
+
+function fullIndividual()
+{
+
+  const container = document.getElementById("individualContainer");
+     container.innerHTML = "";
+      container.innerHTML += ` <div class="row individualMovieRow">
+                <div class="col-12 col-lg-4">
+                    <div class="moviePosterDiv">
+                        <img src="${localStorage.getItem('savedMoviePoster')}" class="img-fluid moviePoster" alt="Movie Poster">
+                    </div>
+
+                </div>
+                
+                <div class="col-12 col-lg-8">
+                    <div class="indivMovInfoText">
+                        <!-- Movie Name -->
+                        <h2 id="movieNameMovIndiv">${localStorage.getItem('savedMovieTitle')} </h2>
+
+                        <!-- Rating -->
+                        <div class="ratingMovIndivDiv alignItemsHorizontal">
+                            <i class="fa-solid fa-star ratingMovIndiv"></i>
+                            <i class="fa-solid fa-star ratingMovIndiv"></i>
+                            <i class="fa-solid fa-star ratingMovIndiv"></i>
+                            <i class="fa-solid fa-star-half ratingMovIndiv"></i>
+                            <h5 id="textH5">Rating Here</h5>
+                        </div>    
+
+                        <!-- Release Year -->
+                        <div class="releaseYearMovIndivDiv alignItemsHorizontal">
+                            <i class="fa-solid fa-calendar"></i>
+                            <h5 id="textH5">${localStorage.getItem('savedMovieYear')}</h5>
+                        </div> 
+                        
+                        <!-- Genre -->
+                        <div class="genreMovIndivDiv alignItemsHorizontal">
+                            <i class="fa-solid fa-film genreMovIndiv"></i>
+                            <h5 id="textH5">${localStorage.getItem('savedGenre')}</h5>
+                        </div>  
+                        
+                        <!-- Sypnopsis -->
+                        <div class="sypnopsisMovIndivDiv alignItemsHorizontal">
+                            <h5 id="textH5">Synopsis:</h5>
+                            <p>${localStorage.getItem('savedSynopsis')}</p>
+                        </div>
+                        
+                        <!-- Trailer Link -->
+                        <div class="trailorLinkMovIndivDiv alignItemsHorizontal">
+                            <h5 id="textH5">Trailer:</h5>
+                            <a href="#" id="trailerLinkMovIndiv"> Watch Trailer</a>
+                        </div> 
+                        
+
+                        <!--Language-->
+                        <div class="actorsMovIndivDiv alignItemsHorizontal">
+                            <h5 id="textH5">Language:</h5>
+                            <p id="actorsMovIndiv">${localStorage.getItem('savedMovieLang')}</p>
+                        </div>
+                        
+                        <!-- Buttons -->
+                        <div class="buttonsMovIndivDiv">
+                            <div class="holographicContainer">
+                                <div class="holographicCard">
+                                    <a href="#####" id="viewMoreButton"><i class="fa-solid fa-plus"></i>Watchlist</a>
+                                </div>
+                            </div>
+
+                            <div class="holographicContainer">
+                                <div class="holographicCard">
+                                    <a href="https://www.themoviedb.org/movie/${localStorage.getItem('savedMovieTitle')}" id="viewMoreButton"><i class="fa-solid fa-play"></i>Watch Now</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+    `;
+}
 
 
 document.addEventListener("DOMContentLoaded", fetchLibraryMovies);
+document.addEventListener("DOMContentLoaded", fullIndividual );
+
