@@ -1,4 +1,5 @@
 // Movie class + array 
+// Movie class + array 
 class Movies {
   constructor(title, synopsis, poster, link, genreId, year, id , lang ) {
     this.title = title;
