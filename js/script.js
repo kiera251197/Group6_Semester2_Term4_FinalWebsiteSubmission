@@ -21,7 +21,7 @@ let data= await fetch('https://api.themoviedb.org/3/movie/popular?language=en-US
             .then((response)=> response.json())
             .then((results)=> {return results})
             .catch((error)=> console.log(error));
-            console.log(data);
+        
 
 
             //get and set slider images using Api
@@ -44,7 +44,7 @@ let data= await fetch('https://api.themoviedb.org/3/movie/popular?language=en-US
               
               document.getElementById('movieMonth').innerHTML = `${title} : ${description}`;
               document.getElementById('movieMonthImg').innerHTML = `<img src="${image}" style="width: 9
-            0%; border-radius: 50px;" alt="Movie Poster">`;
+              0%; border-radius: 50px;" alt="Movie Poster">`;
 
               
           
