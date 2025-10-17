@@ -568,10 +568,11 @@
 }
 
 .btn-primary{
-  background-color: #157267;
+  background-color: #43B6AF;
   border: none;
   padding: 5% 0;
   width: 45%;
+  margin-top: 10%;
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
   font-size: 90%;
@@ -1151,14 +1152,14 @@ form a {
 
 input {
   background-color: var(--color-4);
-  border: 2px solid black;
-  border-radius: 3px;
+  border: none !important;
+  border-radius: 50px;
   line-height: 2;
   padding: 4px 8px;
   font-size: 16px;
-  box-shadow: 0.3rem 0.3rem #111827;
+  box-shadow: rgba(0, 0, 0, 0.499) 2.4px 2.4px 3.2px;  
   font-family: 'Montserrat', sans-serif;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 input:focus {
@@ -1188,6 +1189,38 @@ input[type="submit"] {
 input[type="submit"]:active,
 button:active {
   transform: scale(1.03);
+}
+
+#span-email-1{
+  margin-left: 5px;
+  font-size: 80%;
+  color: var(--color-1);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+}
+
+#span-email-2{
+  margin-left: 5px;
+  font-size: 80%;
+  color: var(--color-1);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+}
+
+#span-password-1{
+  margin-left: 5px;
+  font-size: 80%;
+  color: var(--color-1);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+}
+
+#span-password-2{
+  margin-left: 5px;
+  font-size: 80%;
+  color: var(--color-1);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
 }
 
 label {
