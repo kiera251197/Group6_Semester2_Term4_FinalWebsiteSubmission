@@ -8,7 +8,7 @@ class Movies {
     this.genreId = genreId;
     this.year = year;
     this.id = id;
-    this.year =lang;
+    
     
   }
 }
@@ -43,7 +43,7 @@ function buildMovieCard(movieObj) {
         <p class="cardText">${movieObj.synopsis}</p>
         <div class="libraryCardButtons">
           <a href="#######" class="btn btn-primary holographicCard" style="margin: 0;"><i class="fa-solid fa-plus"></i> Watchlist</a>
-          <a href="../pages/individual.html" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;" onclick="saveClass('${movieObj.title}' , '${movieObj.year}','${movieObj.synopsis}','${genreMap[movieObj.genreId] || "Unknown"}' ,${movieObj.poster} ,'${movieObj.link}','${movieObj.lang}' ) ">More Info</a>
+          <a href="../pages/individual.html" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;" onclick="saveClass('${movieObj.title}' , '${movieObj.year}','${movieObj.synopsis}','${genreMap[movieObj.genreId] || "Unknown"}' ,'${movieObj.poster}') ">More Info</a>
         </div>
       </div>
     </div>
@@ -52,15 +52,18 @@ function buildMovieCard(movieObj) {
 
 
 
-function saveClass(individualTitle,individualYear,individualSynopsis,individualGenre,individualPoster,individualID,individualLang)
+function saveClass(individualTitle,individualYear,individualSynopsis,individualGenre,individualPoster)
 {
-  localStorage.setItem('savedMovieTitle', individualTitle);
+  localStorage.setItem('savedMovieTitle', individualTitle)
   localStorage.setItem('savedMovieYear', individualYear);
   localStorage.setItem('savedSynopsis', individualSynopsis);
   localStorage.setItem('savedGenre', individualGenre);
   localStorage.setItem('savedMoviePoster', individualPoster);
-  localStorage.setItem('savedMovieID', individualID);
-  localStorage.setItem('savedMovieLang', individualLang);
+ 
+
+
+  console.log(localStorage.getItem('savedMovieTitle'));
+  console.log(localStorage.getItem('savedMovieYear'));
 }
 
 
