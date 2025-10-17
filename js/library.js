@@ -43,7 +43,7 @@ function buildMovieCard(movieObj) {
         <p class="cardText">${movieObj.synopsis}</p>
         <div class="libraryCardButtons">
           <a href="#######" class="btn btn-primary holographicCard" style="margin: 0;"><i class="fa-solid fa-plus"></i> Watchlist</a>
-          <a href="../pages/individual.html" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;" onclick="saveClass('${movieObj.title}' , '${movieObj.year}','${movieObj.synopsis}','${genreMap[movieObj.genreId] || "Unknown"}' ,${movieObj.poster} ,'${movieObj.id}','${movieObj.lang}' ) ">More Info</a>
+          <a href="../pages/individual.html" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;" onclick="saveClass('${movieObj.title}' , '${movieObj.year}','${movieObj.synopsis}','${genreMap[movieObj.genreId] || "Unknown"}' ,${movieObj.poster} ,'${movieObj.link}','${movieObj.lang}' ) ">More Info</a>
         </div>
       </div>
     </div>
@@ -99,7 +99,7 @@ async function fetchLibraryMovies() {
       let year = movie.release_date ? movie.release_date.split("-")[0] : "Unknown";
       let id = movie.id
       let lang = movie.original_language
-      const newMovie = new Movies(title, synopsis, poster, link, genreId, year ,id ,lang);
+      const newMovie = new Movies(title, synopsis, poster, link, genreId, year ,lang);
       movieList.push(newMovie);
       
 
@@ -228,7 +228,7 @@ function fullIndividual()
 
                             <div class="holographicContainer">
                                 <div class="holographicCard">
-                                    <a href="https://www.themoviedb.org/movie/${localStorage.getItem('savedMovieTitle')}" id="viewMoreButton"><i class="fa-solid fa-play"></i>Watch Now</a>
+                                    <a href="${localStorage.getItem('savedMovieTitle')}" id="viewMoreButton"><i class="fa-solid fa-play"></i>Watch Now</a>
                                 </div>
                             </div>
                         </div>
