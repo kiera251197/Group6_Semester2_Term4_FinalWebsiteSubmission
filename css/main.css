@@ -141,12 +141,10 @@
   transform: scaleX(1);
 }
 
-
-
-
 /* INFO SECTION */
 .ourInfo{
-  background-color: #43B6AF;
+  background: #686968;
+  background: linear-gradient(153deg, rgba(104, 105, 104, 1) 12%, rgba(0, 240, 239, 1) 55%, rgba(104, 105, 104, 1) 94%);
   padding-top: 5%;
   padding-bottom: 5%;
   justify-content: center;
@@ -204,75 +202,6 @@
   display: inline;
   color: #FEFCF4;
 }
-
-
-
-/* INFO SECTION */
-/* .ourInfo{
-  background-color: #43B6AF;
-  padding-top: 5%;
-  padding-bottom: 5%;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-}
-
-#infoCardHeading {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  font-size: 110%;
-  color: #FEFCF4;
-}
-
-#infoCardText{
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 500;
-  font-size: 90%;
-  color: #FEFCF4;
-  margin: 0;
-}
-
-.infoCard {
-  text-align: center;
-  align-items: center;
-  align-content: center;
-  padding: 2%;
-  background-color: #11100E;
-  border-radius: 30px;
-  width: 30%;
-}
-
-.infoCard i{
-  font-size: 300%;
-  color: #157267;
-  margin-bottom: 5%;
-}
-
-#iconMinorContactUs{
-  font-size: 100%;
-  color: #FEFCF4;
-}
-
-.infoCardRow{
-  gap: 5%;
-}
-
-.emailContactUs p{
-  display: inline;
-  color: #FEFCF4;
-}
-
-.phoneContactUs p{
-  display: inline;
-  color: #FEFCF4;
-}
-
-.aboutUs{
-
-} */
-
-
-
 
 
 /* Movie of The Month Section */
@@ -378,10 +307,11 @@
   padding-right: 7%;
 }
 
-.motmImage{
+.motmImage img{
   display: flex; 
   justify-content: center; 
   align-items: center; 
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 
 
@@ -464,11 +394,19 @@
   color: #FEFCF4;
   padding: 2%;
 } */
+.FilterDropdown{
+  display: flex;
+  align-items: right;
+  gap: 0.5rem;
+  margin-right: 3rem; 
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
 
 .sortByDropdown{
   display: flex;
   align-items: center;
   align-content: center;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 
 .formSelect{
@@ -480,6 +418,9 @@
   font-weight: 600;
   font-size: 100%;
   color: #FEFCF4;
+  padding: 0.5em 0.8em 0.5em 1.25em;
+  font-size: 1.0rem;
+  width: 150px;
 }
 
 /* CARDS */
@@ -725,6 +666,10 @@ form input.placeholder {
   padding: 40px 20px;
 }
 
+.logoFooter {
+  width: 250px; 
+}
+
 .footerRow{
   display: flex;
   flex-direction: row;
@@ -733,13 +678,20 @@ form input.placeholder {
   width: 100%;
 }
 
-.footer-img {
+.social-icon {
   display: flex;
-  justify-content: center; 
+  justify-content: space-between; 
+  width: 100%; 
+  margin-bottom: 10%; 
+  padding: 0; 
+}
+
+.footer-img {
+  display: block;
   max-height: 100px;
-  width: auto;
+  width: auto; 
   height: auto;
-  padding: 10px;
+  padding: 0;
 }
 
 #iconSocials{
@@ -747,18 +699,10 @@ form input.placeholder {
   color: #FEFCF4;
 }
 
-.social-icon{
-  margin-bottom: 10%; 
-}
-
 .social-icon a{
-  text-decoration: none !important; 
+ text-decoration: none !important; 
   outline: none;
-}
-
-.social-icon i{
-  padding: 1% 0;
-  padding-right: 10%;
+  flex-shrink: 0;
 }
 
 .navigationLinks a{
@@ -1336,4 +1280,9 @@ label span {
 
 .bounce-right {
   animation: bounceRight 1s forwards;
+}
+
+#LoginBtn{
+  outline: none !important;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
