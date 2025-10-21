@@ -64,14 +64,13 @@
     <section class="librarySection container-fluid">
         <div class="textAndFilter">
             <h1 id="libraryHeaderText">All Movies</h1>
-           
-            <!-- Luka & Caleb pls add code for the search bar here, its okay if you need to delete mine & if you need to redo the dropdown thats cool as well please just lmk when youre done with both so that I am able to style it xoxo gossip girl (Kiera) -->
-            <div class="searchAndSort">
-                <form class="d-flex position-relative align-items-center" role="search" style="width: 250px;">
-                <input class="librarySearchBar form-control ps-5" type="search" placeholder="Search..." aria-label="Search">
-                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                </form>
-        
+            <div class="FilterDropdown">
+                    <select class="formSelect" aria-label="Default select example" onchange="sortByGenre()"  id="dropdownGenre">
+                        <option selected value="0">Filter</option>
+                        <option value="28" >Rating</option>
+                        <option value="12" >Year</option>
+                        </select>
+                
                 <!-- SortBy Dropdown -->
                 <div class="sortByDropdown">
                     <select class="formSelect" aria-label="Default select example" onchange="sortByGenre()"  id="dropdownGenre">
