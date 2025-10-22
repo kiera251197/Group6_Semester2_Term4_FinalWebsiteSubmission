@@ -1,6 +1,6 @@
 // Movie class + array 
 class Movies {
-  constructor(title, synopsis, poster, link, genreId, year,Movieid) {
+  constructor(title, synopsis, poster, link, genreId, year,Movieid,rate) {
     this.title = title;
     this.synopsis = synopsis;
     this.poster = poster;
@@ -8,6 +8,7 @@ class Movies {
     this.genreId = genreId;
     this.year = year;
     this.Movieid = Movieid;
+    this.rate= rate;
   }
 }
 
@@ -42,23 +43,27 @@ function buildMovieCard(movieObj) {
         <p class="cardText">${movieObj.synopsis}</p>
         <div class="libraryCardButtons">
           <a href="#######" class="btn btn-primary holographicCard" style="margin: 0;"><i class="fa-solid fa-plus"></i> Watchlist</a>
-          <a href="../pages/individual.html" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;" onclick="saveClass('${movieObj.title}' , '${movieObj.year}','${movieObj.synopsis}','${genreMap[movieObj.genreId] || "Unknown"}' ,'${movieObj.poster}','${movieObj.Movieid}') ">More Info</a>
+          <a href="../pages/individual.html" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;" onclick="saveClass('${movieObj.title}' , '${movieObj.year}','${movieObj.synopsis}','${genreMap[movieObj.genreId] || "Unknown"}' ,'${movieObj.poster}','${movieObj.Movieid}','${movieObj.rate}') ">More Info</a>
         </div>
       </div>
     </div>
   `;
 }
 
-//a href="../pages/individual.html"
 //saved Data for indivial page
-function saveClass(individualTitle,individualYear,individualSynopsis,individualGenre,individualPoster,indivialID)
+function saveClass(individualTitle,individualYear,individualSynopsis,individualGenre,individualPoster,indivialID,rate)
 {
+  let shortRate = rate.substring(0, 3);
+
+
+
   localStorage.setItem('savedMovieTitle', individualTitle);
   localStorage.setItem('savedMovieYear', individualYear);
   localStorage.setItem('savedSynopsis', individualSynopsis);
   localStorage.setItem('savedGenre', individualGenre);
   localStorage.setItem('savedMoviePoster', individualPoster);
   localStorage.setItem('savedID', indivialID);
+  localStorage.setItem('savedRate', shortRate);
 
   console.log(localStorage.getItem('savedID'));
   console.log(localStorage.getItem('savedMovieTitle'));
@@ -107,7 +112,7 @@ async function fechTrailers(MovieID)
 }
 
 
-//get Actors from Api
+//get Actors and director from Api
 async function fetchCredits(MovieID)
 {
    const CreditsApiLink = 'https://api.themoviedb.org/3/movie/'+MovieID+'/credits?language=en-US';
@@ -183,7 +188,8 @@ async function fetchLibraryMovies()
       let genreId = movie.genre_ids && movie.genre_ids.length > 0 ? movie.genre_ids[0] : null;
       let year = movie.release_date ? movie.release_date.split("-")[0] : "Unknown";
       let Movieid = movie.id;
-      const newMovie = new Movies(title, synopsis, poster, link, genreId, year,Movieid);
+      let rate = movie.vote_average;
+      const newMovie = new Movies(title, synopsis, poster, link, genreId, year,Movieid,rate);
       movieList.push(newMovie);
       container.innerHTML += buildMovieCard(newMovie);
 
@@ -242,10 +248,7 @@ function sortByGenre()
   }
  }
 
-
-
-
-//
+//full indivial page
 function fullIndividual()
 {
 
@@ -266,11 +269,8 @@ function fullIndividual()
 
                         <!-- Rating -->
                         <div class="ratingMovIndivDiv alignItemsHorizontal">
-                            <i class="fa-solid fa-star ratingMovIndiv"></i>
-                            <i class="fa-solid fa-star ratingMovIndiv"></i>
-                            <i class="fa-solid fa-star ratingMovIndiv"></i>
-                            <i class="fa-solid fa-star-half ratingMovIndiv"></i>
-                            <h5 id="textH5">Rating Here</h5>
+                            <h5 style="margin-right: 20px;" id="textH5"> Rating :  </h5>
+                            <p style="font-size: 20px;">${localStorage.getItem('savedRate')} </p>
                         </div>    
 
                         <!-- Release Year -->

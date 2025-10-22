@@ -212,7 +212,7 @@ animationContainer.addEventListener('mousemove', (e)=> {
    
    mouseY = y;
    mouseX = x;
-   //    animationContainer.style.setProperty("--radial-position-1", calculateLocationChange("--radial-position-1", y));
+   // animationContainer.style.setProperty("--radial-position-1", calculateLocationChange("--radial-position-1", y));
    // animationContainer.style.setProperty("--radial-position-2", calculateLocationChange("--radial-position-2", x));
    animationContainer.style.setProperty("--radial-position-3", calculateLocationChange("--radial-position-3", y, lastMousePositionY));
    animationContainer.style.setProperty("--radial-position-4", calculateLocationChange("--radial-position-4", x, lastMousePositionX));
