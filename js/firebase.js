@@ -18,7 +18,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app); // getAuth is now imported
+const auth = getAuth(app);
 
 // Signup function
 document.getElementById('firebaseSignUp').addEventListener("submit", async (e) => {
@@ -27,11 +27,9 @@ document.getElementById('firebaseSignUp').addEventListener("submit", async (e) =
     let password = document.getElementById('password-1').value;
 
     try {
-        // Function is now imported
         await createUserWithEmailAndPassword(auth, email, password); 
         alert("Account has been created successfully");
-        // Corrected path from 'pages/' folder
-        window.location.href = "../index.html"; 
+        window.location.href = "../signin-up.html"; 
     }catch (error){
         alert(error.message);
     }
@@ -44,11 +42,9 @@ document.getElementById('firebaseLogin').addEventListener("submit", async (e) =>
     let password = document.getElementById('password-2').value;
 
     try {
-        // Function is now imported
         await signInWithEmailAndPassword(auth, email, password); 
         alert("Successfully logged in");
-        // Corrected path from 'pages/' folder
-        window.location.href = "../index.html"; 
+        window.location.href = "../signin-up.html"; 
     }catch (error){
         alert(error.message);
     }
