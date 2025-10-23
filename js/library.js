@@ -26,7 +26,7 @@ const genreMap = {
 
 
 
-const libraryApiUrl = "https://api.themoviedb.org/3/movie/top_rated";
+const libraryApiUrl = "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1";
 
 
 function buildMovieCard(movieObj) {
@@ -50,11 +50,11 @@ function buildMovieCard(movieObj) {
     </div>
   `;
 }
-
+//a href="../pages/individual.html"
 //saved Data for indivial page
 function saveClass(individualTitle,individualYear,individualSynopsis,individualGenre,individualPoster,indivialID,rate)
 {
-  let shortRate = rate.substring(0, 3);
+  let shortRate = rate;
 
   localStorage.setItem('savedMovieTitle', individualTitle);
   localStorage.setItem('savedMovieYear', individualYear);
@@ -62,11 +62,12 @@ function saveClass(individualTitle,individualYear,individualSynopsis,individualG
   localStorage.setItem('savedGenre', individualGenre);
   localStorage.setItem('savedMoviePoster', individualPoster);
   localStorage.setItem('savedID', indivialID);
-  localStorage.setItem('savedRate', shortRate);
+  localStorage.setItem('savedRate', rate);
 
   console.log(localStorage.getItem('savedID'));
   console.log(localStorage.getItem('savedMovieTitle'));
   console.log(localStorage.getItem('savedMovieYear'));
+  console.log(localStorage.getItem('savedRate'))
   fechTrailers(indivialID);
   fetchCredits(indivialID);
 }
@@ -173,7 +174,7 @@ async function fetchLibraryMovies()
 
     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
     const data = await response.json();
-    console.log("Fetched data Movies:", data);
+   
 
     container.innerHTML = ""; 
     movieList = [];
@@ -191,7 +192,7 @@ async function fetchLibraryMovies()
       const newMovie = new Movies(title, synopsis, poster, link, genreId, year,Movieid,rate);
       movieList.push(newMovie);
       container.innerHTML += buildMovieCard(newMovie);
-
+    
     });
 
   } catch (error) {
@@ -200,7 +201,67 @@ async function fetchLibraryMovies()
   }
 }
 
+//filter section code
+
 //drop down filter
+//change the filter type
+function sortByFilterType()
+{
+ const container = document.getElementById("DropdownChange");
+ 
+ const selectedGenre = document.getElementById("dropdownType").value;
+ console.log(selectedGenre);
+ if (selectedGenre==1)
+  {
+    container.innerHTML = "";
+    console.log("rateing");
+    container.innerHTML =`<select class="formSelect" aria-label="Default select example" onchange="sortByRateing()"  id="dropdownGenre">
+                        <option selected value="0">All</option>
+                        <option value="10" >5 stars </option>
+                        <option value="8" >4 stars </option>
+                        <option value="6" >3 stars </option>
+                        <option value="4" >2 stars </option>
+                        <option value="2" >1 stars </option>
+                        </select>`;
+    fetchLibraryMovies(); 
+  }
+  else if (selectedGenre==2)
+  {
+    container.innerHTML = "";
+    console.log("rateing");
+    container.innerHTML =`<select class="formSelect" aria-label="Default select example" onchange="sortByYear()"  id="dropdownGenre">
+                        <option selected value="0">All</option>
+                        <option value="2020">2020's</option>
+                        <option value="2010" >2010's</option>
+                        <option value="2000" >2000's</option>
+                        <option value="1990" >1990's</option>
+                        <option value="1980" >1980's</option>
+                        </select>`;
+    fetchLibraryMovies(); 
+  }
+  else
+  {
+    container.innerHTML = "";
+    console.log("rateing");
+    container.innerHTML =`<select class="formSelect" aria-label="Default select example" onchange="sortByGenre()"  id="dropdownGenre">
+                        <option selected value="0">All</option>
+                        <option value="28" >Action</option>
+                        <option value="12" >Adventure</option>
+                        <option  value="16" >Animation</option>
+                        <option value="35" >Comedy</option>
+                        <option value="80" >Crime</option>
+                        <option value="99" >Documentary</option>
+                        <option  value="18" >Drama</option>
+                        <option  value="10751" >Family</option>
+                        <option  value="14" >Fantasy</option>
+                        <option  value="36" >History</option>
+                        <option  value="27" >Horror</option>
+                        <option  value="10770">Music</option>
+                        </select>>`;
+    fetchLibraryMovies(); 
+  }
+}
+
 function sortByGenre()
 {
  const selectedGenre = document.getElementById("dropdownGenre").value;
@@ -234,7 +295,7 @@ function sortByGenre()
                         <!-- Make Watchlist add button work & put movie into user's watchlist por favor -->
                         <div class="libraryCardButtons">
                             <a href="#######" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;"><i class="fa-solid fa-plus"></i>Watchlist</a>
-                            <a href="../pages/individual.html" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;" onclick="saveClass('${Movies.title}' , '${Movies.year}','${Movies.synopsis}','${genreMap[Movies.genreId] || "Unknown"}' ,'${Movies.poster}','${Movies.Movieid}')  ">More Info</a>
+                            <a href="../pages/individual.html" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;" onclick="saveClass('${Movies.title}' , '${Movies.year}','${Movies.synopsis}','${genreMap[Movies.genreId] || "Unknown"}' ,'${Movies.poster}','${Movies.Movieid}' ,'${Movies.rate}')  ">More Info</a>
                         </div>
                     </div>
                 </div>
@@ -246,60 +307,104 @@ function sortByGenre()
       fetchLibraryMovies();
   }
  }
-
-//change the filter type
-function sortByFilterType()
+function sortByRateing()
 {
- const container = document.getElementById("DropdownChange");
- 
- const selectedGenre = document.getElementById("dropdownType").value;
- console.log(selectedGenre);
- if (selectedGenre==1)
+  const selectedRate = parseFloat(document.getElementById("dropdownGenre").value);
+  console.log(selectedRate);
+  
+  let byRate;
+   if(selectedRate>0)
   {
-    container.innerHTML = "";
-    console.log("rateing");
-    container.innerHTML =`<select class="formSelect" aria-label="Default select example" onchange="sortByGenre()"  id="dropdownGenre">
-                        <option selected value="0">All</option>
-                        <option value="28" >high to low</option>
-                        <option value="28" >low to high</option>
-                        </select>`;
-  }
-  else if (selectedGenre==2)
-  {
-    container.innerHTML = "";
-    console.log("rateing");
-    container.innerHTML =`<select class="formSelect" aria-label="Default select example" onchange="sortByGenre()"  id="dropdownGenre">
-                        <option selected value="0">All</option>
-                        <option value="28" >new releases</option>
-                         <option value="28">2020's</option>
-                        <option value="28" >2010's</option>
-                        <option value="28" >2000's</option>
-                        <option value="28" >1990's</option>
-                        <option value="28" >1980's</option>
+     byRate = movieList.filter(movie => movie.rate>=selectedRate);
+     const container = document.getElementById("movieContainer");
+     container.innerHTML = "";
+      byRate.forEach((Movies) => {
+      container.innerHTML += `<div class="col col-lg-3 col-md-6 align-items-stretch h-100" id="libraryCard">
+                    <img src="https://image.tmdb.org/t/p/w500${Movies.poster}" class="card-img-top" alt="${Movies.title} poster"  style="border-top-left-radius: 25px; border-top-right-radius: 25px;">
+                    <div class="card-body libraryCardBody">
+                        <!-- Movie Title -->
+                        <h3 class="movieTitle">${Movies.title}</h3>
 
-                        </select>`;
+                        <!-- Genre & Release Year -->
+                        <h6 class="genreAndYear">
+                            <i class="fa-solid fa-film"></i>
+                            <p class="genreText">${genreMap[Movies.genreId]}</p>
+
+                            <i class="fa-solid fa-calendar" style="margin-left: 30px;"></i>
+                            <p class="yearText"> ${Movies.year} </p>
+                        </h6>
+
+                        <!-- Sypnopsis Text -->
+                        <p class="cardText">${Movies.synopsis}</p>
+
+                        <!-- Make Watchlist add button work & put movie into user's watchlist por favor -->
+                        <div class="libraryCardButtons">
+                            <a href="#######" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;"><i class="fa-solid fa-plus"></i>Watchlist</a>
+                            <a href="../pages/individual.html" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;" onclick="saveClass('${Movies.title}' , '${Movies.year}','${Movies.synopsis}','${genreMap[Movies.genreId] || "Unknown"}' ,'${Movies.poster}','${Movies.Movieid}')  ">More Info</a>
+                        </div>
+                    </div>
+                </div>
+    `;
+  });
+  }else
+  {
+      fetchLibraryMovies();
+  }
+}
+
+function sortByYear() {
+   
+  const selectedYear = document.getElementById("dropdownGenre").value;
+  
+  const yearMin = parseInt(selectedYear);
+  const yearMax = yearMin+10;
+  console.log(yearMax);
+   if(selectedYear>0)
+  {
+     byYear = movieList.filter(movie => {return parseInt(movie.year) >= yearMin && parseInt(movie.year) <= yearMax;
+     });
+     console.log(byYear);
+     const container = document.getElementById("movieContainer");
+     container.innerHTML = "";
+      byYear.forEach((Movies) => 
+        {
+            container.innerHTML += `<div class="col col-lg-3 col-md-6 align-items-stretch h-100" id="libraryCard">
+                    <img src="https://image.tmdb.org/t/p/w500${Movies.poster}" class="card-img-top" alt="${Movies.title} poster"  style="border-top-left-radius: 25px; border-top-right-radius: 25px;">
+                    <div class="card-body libraryCardBody">
+                        <!-- Movie Title -->
+                        <h3 class="movieTitle">${Movies.title}</h3>
+
+                        <!-- Genre & Release Year -->
+                        <h6 class="genreAndYear">
+                            <i class="fa-solid fa-film"></i>
+                            <p class="genreText">${genreMap[Movies.genreId]}</p>
+
+                            <i class="fa-solid fa-calendar" style="margin-left: 30px;"></i>
+                            <p class="yearText"> ${Movies.year} </p>
+                        </h6>
+
+                        <!-- Sypnopsis Text -->
+                        <p class="cardText">${Movies.synopsis}</p>
+
+                        <!-- Make Watchlist add button work & put movie into user's watchlist por favor -->
+                        <div class="libraryCardButtons">
+                            <a href="#######" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;"><i class="fa-solid fa-plus"></i>Watchlist</a>
+                            <a href="../pages/individual.html" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;" onclick="saveClass('${Movies.title}' , '${Movies.year}','${Movies.synopsis}','${genreMap[Movies.genreId] || "Unknown"}' ,'${Movies.poster}','${Movies.Movieid}')  ">More Info</a>
+                        </div>
+                    </div>
+                </div>
+       `;
+     });
   }
   else
   {
-    container.innerHTML = "";
-    console.log("rateing");
-    container.innerHTML =`<select class="formSelect" aria-label="Default select example" onchange="sortByGenre()"  id="dropdownGenre">
-                        <option selected value="0">All</option>
-                        <option value="28" >Action</option>
-                        <option value="12" >Adventure</option>
-                        <option  value="16" >Animation</option>
-                        <option value="35" >Comedy</option>
-                        <option value="80" >Crime</option>
-                        <option value="99" >Documentary</option>
-                        <option  value="18" >Drama</option>
-                        <option  value="10751" >Family</option>
-                        <option  value="14" >Fantasy</option>
-                        <option  value="36" >History</option>
-                        <option  value="27" >Horror</option>
-                        <option  value="10770">Music</option>
-                        </select>>`;
+      fetchLibraryMovies();
   }
 }
+
+
+// end of filter section code
+
 
 
 
