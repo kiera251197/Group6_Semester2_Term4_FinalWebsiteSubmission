@@ -506,3 +506,6 @@ document.addEventListener("DOMContentLoaded", fetchLibraryMovies);
 document.addEventListener("DOMContentLoaded", fullIndividual );
 document.addEventListener("DOMContentLoaded", fullIndividual );
 
+
+
+
