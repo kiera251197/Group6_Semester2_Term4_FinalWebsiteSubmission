@@ -12,7 +12,6 @@ class Movies
     this.rate= rate;
   }
 }
-
 let movieList = [];
 
 // genre map for referencing
@@ -26,7 +25,7 @@ const genreMap = {
 
 
 
-const libraryApiUrl = "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1";
+const libraryApiUrl = "https://api.themoviedb.org/3/movie/upcoming?";
 
 
 function buildMovieCard(movieObj) {
@@ -44,7 +43,7 @@ function buildMovieCard(movieObj) {
         <p class="cardText">${movieObj.synopsis}</p>
         <div class="libraryCardButtons">
           <a href="#######" class="btn btn-primary holographicCard" style="margin: 0;"><i class="fa-solid fa-plus"></i> Watchlist</a>
-          <a href="../pages/individual.html" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;" onclick="saveClass('${movieObj.title}' , '${movieObj.year}','${movieObj.synopsis}','${genreMap[movieObj.genreId] || "Unknown"}' ,'${movieObj.poster}','${movieObj.Movieid}','${movieObj.rate}') ">More Info</a>
+          <a href="../pages/individual.html" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;" onclick="saveClass('${movieObj.Movieid}','${movieObj.rate}') ">More Info</a>
         </div>
       </div>
     </div>
@@ -52,17 +51,21 @@ function buildMovieCard(movieObj) {
 }
 //a href="../pages/individual.html"
 //saved Data for indivial page
-function saveClass(individualTitle,individualYear,individualSynopsis,individualGenre,individualPoster,indivialID,rate)
+function saveClass(indivialID,rate)
 {
-  let shortRate = rate;
+ 
 
-  localStorage.setItem('savedMovieTitle', individualTitle);
-  localStorage.setItem('savedMovieYear', individualYear);
-  localStorage.setItem('savedSynopsis', individualSynopsis);
-  localStorage.setItem('savedGenre', individualGenre);
-  localStorage.setItem('savedMoviePoster', individualPoster);
+  let byID = movieList.filter(movies => movies.Movieid==indivialID);
+  console.log("newlist",byID);
+  let shortRate = rate.substring(0,3);
+
+  localStorage.setItem('savedMovieTitle', byID[0].title);
+  localStorage.setItem('savedMovieYear', byID[0].year);
+  localStorage.setItem('savedSynopsis', byID[0].synopsis);
+  localStorage.setItem('savedGenre', genreMap[byID[0].genreId]);
+  localStorage.setItem('savedMoviePoster',byID[0].poster);
   localStorage.setItem('savedID', indivialID);
-  localStorage.setItem('savedRate', rate);
+  localStorage.setItem('savedRate', (shortRate/2));
 
   console.log(localStorage.getItem('savedID'));
   console.log(localStorage.getItem('savedMovieTitle'));
@@ -160,46 +163,52 @@ async function fetchLibraryMovies()
  {
   const container = document.getElementById("movieContainer");
   container.innerHTML = "<p>Loading movies...</p>";
-
+ 
   try {
-    const response = await fetch(`${libraryApiUrl}?language=en-US&page=1`, 
+  
+      const response = await fetch(`${libraryApiUrl}?language=en-US&page=2`, 
       {
-      headers: {
+      headers: 
+      {
         Authorization: `Bearer ${apiKey}`, 
         "Content-Type": "application/json"
-      }
-    });
-
-    console.log("Response status:", response.status);
-
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-    const data = await response.json();
-   
-
-    container.innerHTML = ""; 
-    movieList = [];
-    data.results.forEach((movie) => {
-      let title = movie.title || movie.name;
-      let synopsis = movie.overview || "No synopsis available";
-      let poster = movie.poster_path
-        ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
-        : "../assets/img/tangled.jpg";
-      let link = `https://www.themoviedb.org/movie/${movie.id}`;
-      let genreId = movie.genre_ids && movie.genre_ids.length > 0 ? movie.genre_ids[0] : null;
-      let year = movie.release_date ? movie.release_date.split("-")[0] : "Unknown";
-      let Movieid = movie.id;
-      let rate = movie.vote_average;
-      const newMovie = new Movies(title, synopsis, poster, link, genreId, year,Movieid,rate);
-      movieList.push(newMovie);
-      container.innerHTML += buildMovieCard(newMovie);
+       }
+      });
     
-    });
+     console.log("Response status:", response.status);
 
-  } catch (error) {
-    console.error("Error fetching movies:", error);
-    container.innerHTML = `<p>Error loading movies: ${error.message}</p>`;
-  }
-}
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+      const data = await response.json();
+    
+
+      container.innerHTML = ""; 
+      movieList = [];
+      data.results.forEach((movie) =>
+         {
+    
+         let title = movie.title || movie.name;
+         let synopsis = movie.overview || "No synopsis available";
+         let poster = movie.poster_path
+         ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+         : "../assets/img/tangled.jpg";
+          let link = `https://www.themoviedb.org/movie/${movie.id}`;
+         let genreId = movie.genre_ids && movie.genre_ids.length > 0 ? movie.genre_ids[0] : null;
+          let year = movie.release_date ? movie.release_date.split("-")[0] : "Unknown";
+         let Movieid = movie.id;
+         let rate = movie.vote_average;
+         const newMovie = new Movies(title, synopsis, poster, link, genreId, year,Movieid,rate);
+         movieList.push(newMovie);
+         container.innerHTML += buildMovieCard(newMovie);
+       }); 
+      }
+      catch (error) 
+     {
+       console.error("Error fetching movies:", error);
+       container.innerHTML = `<p>Error loading movies: ${error.message}</p>`;
+     }
+   
+   
+ }
 
 //filter section code
 
@@ -295,7 +304,7 @@ function sortByGenre()
                         <!-- Make Watchlist add button work & put movie into user's watchlist por favor -->
                         <div class="libraryCardButtons">
                             <a href="#######" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;"><i class="fa-solid fa-plus"></i>Watchlist</a>
-                            <a href="../pages/individual.html" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;" onclick="saveClass('${Movies.title}' , '${Movies.year}','${Movies.synopsis}','${genreMap[Movies.genreId] || "Unknown"}' ,'${Movies.poster}','${Movies.Movieid}' ,'${Movies.rate}')  ">More Info</a>
+                            <a href="../pages/individual.html" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;" onclick="saveClass('${Movies.Movieid}' ,'${Movies.rate}')  ">More Info</a>
                         </div>
                     </div>
                 </div>
@@ -340,7 +349,7 @@ function sortByRateing()
                         <!-- Make Watchlist add button work & put movie into user's watchlist por favor -->
                         <div class="libraryCardButtons">
                             <a href="#######" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;"><i class="fa-solid fa-plus"></i>Watchlist</a>
-                            <a href="../pages/individual.html" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;" onclick="saveClass('${Movies.title}' , '${Movies.year}','${Movies.synopsis}','${genreMap[Movies.genreId] || "Unknown"}' ,'${Movies.poster}','${Movies.Movieid}')  ">More Info</a>
+                            <a href="../pages/individual.html" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;" onclick="saveClass('${Movies.Movieid}' ,'${Movies.rate}')  ">More Info</a>
                         </div>
                     </div>
                 </div>
@@ -389,7 +398,7 @@ function sortByYear() {
                         <!-- Make Watchlist add button work & put movie into user's watchlist por favor -->
                         <div class="libraryCardButtons">
                             <a href="#######" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;"><i class="fa-solid fa-plus"></i>Watchlist</a>
-                            <a href="../pages/individual.html" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;" onclick="saveClass('${Movies.title}' , '${Movies.year}','${Movies.synopsis}','${genreMap[Movies.genreId] || "Unknown"}' ,'${Movies.poster}','${Movies.Movieid}')  ">More Info</a>
+                            <a href="../pages/individual.html" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;" onclick="saveClass('${Movies.Movieid}' ,'${Movies.rate}' )  ">More Info</a>
                         </div>
                     </div>
                 </div>
@@ -430,7 +439,9 @@ function fullIndividual()
                         <!-- Rating -->
                         <div class="ratingMovIndivDiv alignItemsHorizontal">
                             <h5 style="margin-right: 20px;" id="textH5"> Rating :  </h5>
+                            <i class="fa-solid fa-star ratingMovIndiv"></i>
                             <p style="font-size: 20px;">${localStorage.getItem('savedRate')} </p>
+                            
                         </div>    
 
                         <!-- Release Year -->
