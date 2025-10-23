@@ -65,14 +65,14 @@
         <div class="textAndFilter">
             <h1 id="libraryHeaderText">All Movies</h1>
             <div class="FilterDropdown">
-                    <select class="formSelect" aria-label="Default select example" onchange="sortByGenre()"  id="dropdownGenre">
-                        <option selected value="0">Filter</option>
-                        <option value="28" >Rating</option>
-                        <option value="12" >Year</option>
+                    <select class="formSelect" aria-label="Default select example" onchange="sortByFilterType()"  id="dropdownType">
+                        <option selected value="0">Genre</option>
+                        <option value="1" >Rating</option>
+                        <option value="2" >Year</option>
                         </select>
-                
+             
                 <!-- SortBy Dropdown -->
-                <div class="sortByDropdown">
+                <div class="sortByDropdown" id="DropdownChange">
                     <select class="formSelect" aria-label="Default select example" onchange="sortByGenre()"  id="dropdownGenre">
                         <option selected value="0">All</option>
                         <option value="28" >Action</option>

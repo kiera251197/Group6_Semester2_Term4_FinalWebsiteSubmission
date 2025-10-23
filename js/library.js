@@ -1,5 +1,6 @@
 // Movie class + array 
-class Movies {
+class Movies 
+{
   constructor(title, synopsis, poster, link, genreId, year,Movieid,rate) {
     this.title = title;
     this.synopsis = synopsis;
@@ -54,8 +55,6 @@ function buildMovieCard(movieObj) {
 function saveClass(individualTitle,individualYear,individualSynopsis,individualGenre,individualPoster,indivialID,rate)
 {
   let shortRate = rate.substring(0, 3);
-
-
 
   localStorage.setItem('savedMovieTitle', individualTitle);
   localStorage.setItem('savedMovieYear', individualYear);
@@ -248,6 +247,62 @@ function sortByGenre()
   }
  }
 
+//change the filter type
+function sortByFilterType()
+{
+ const container = document.getElementById("DropdownChange");
+ 
+ const selectedGenre = document.getElementById("dropdownType").value;
+ console.log(selectedGenre);
+ if (selectedGenre==1)
+  {
+    container.innerHTML = "";
+    console.log("rateing");
+    container.innerHTML =`<select class="formSelect" aria-label="Default select example" onchange="sortByGenre()"  id="dropdownGenre">
+                        <option selected value="0">All</option>
+                        <option value="28" >high to low</option>
+                        <option value="28" >low to high</option>
+                        </select>`;
+  }
+  else if (selectedGenre==2)
+  {
+    container.innerHTML = "";
+    console.log("rateing");
+    container.innerHTML =`<select class="formSelect" aria-label="Default select example" onchange="sortByGenre()"  id="dropdownGenre">
+                        <option selected value="0">All</option>
+                        <option value="28" >new releases</option>
+                         <option value="28">2020's</option>
+                        <option value="28" >2010's</option>
+                        <option value="28" >2000's</option>
+                        <option value="28" >1990's</option>
+                        <option value="28" >1980's</option>
+
+                        </select>`;
+  }
+  else
+  {
+    container.innerHTML = "";
+    console.log("rateing");
+    container.innerHTML =`<select class="formSelect" aria-label="Default select example" onchange="sortByGenre()"  id="dropdownGenre">
+                        <option selected value="0">All</option>
+                        <option value="28" >Action</option>
+                        <option value="12" >Adventure</option>
+                        <option  value="16" >Animation</option>
+                        <option value="35" >Comedy</option>
+                        <option value="80" >Crime</option>
+                        <option value="99" >Documentary</option>
+                        <option  value="18" >Drama</option>
+                        <option  value="10751" >Family</option>
+                        <option  value="14" >Fantasy</option>
+                        <option  value="36" >History</option>
+                        <option  value="27" >Horror</option>
+                        <option  value="10770">Music</option>
+                        </select>>`;
+  }
+}
+
+
+
 //full indivial page
 function fullIndividual()
 {
@@ -332,5 +387,6 @@ function fullIndividual()
 
 
 document.addEventListener("DOMContentLoaded", fetchLibraryMovies);
+document.addEventListener("DOMContentLoaded", fullIndividual );
 document.addEventListener("DOMContentLoaded", fullIndividual );
 
