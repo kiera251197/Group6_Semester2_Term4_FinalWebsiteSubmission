@@ -71,7 +71,7 @@
                             <div id="col-1" class="colSignIn">
                             <div id="sign-up-form" class="form formSign">
                                 <h1 class="hover-underline">Sign Up</h1>
-                                <form class="formSignInUp" onsubmit="return false;">
+                                <form id="firebaseSignUp" class="formSignInUp" onsubmit="return false;">
                                 <label for="email-1">
                                     <input id="email-1" name="email-1" type="email" placeholder="" autocomplete="off">
                                     <span id="span-email-1">Email</span>
@@ -85,7 +85,7 @@
                             </div>
                             <div id="login-form" class="form display-none">
                                 <h1 class="hover-underline">Login</h1>
-                                <form class="formSignInUp" onsubmit="return false;">
+                                <form id="firebaseLogin" class="formSignInUp" onsubmit="return false;">
                                 <label for="email-2">
                                     <input id="email-2" name="email-2" type="email" placeholder="" autocomplete="off">
                                     <span id="span-email-2">Email</span>
@@ -186,6 +186,7 @@
     <script src="../js/config.js"></script>
     <script src="../js/script.js"></script>
     <script src="../js/library.js"></script>
+    <script type="module" src="../js/firebase.js"></script>
 
 </body>
 </html>    
