@@ -87,3 +87,4 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("Error fetching watchlist movies:", err);
   }
 });
+  
