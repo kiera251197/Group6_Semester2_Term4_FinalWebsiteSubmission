@@ -1,5 +1,5 @@
 // Import modules using CDN paths and include the 'firebase/auth' module
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
 // Optional: If you want analytics
 // import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-analytics.js"; 
@@ -44,8 +44,9 @@ document.getElementById('firebaseLogin').addEventListener("submit", async (e) =>
     try {
         await signInWithEmailAndPassword(auth, email, password); 
         alert("Successfully logged in");
-        window.location.href = "../signin-up.html"; 
+        window.location.href = "../index.html"; 
     }catch (error){
         alert(error.message);
     }
 });
+
