@@ -1,6 +1,6 @@
-const apiKey = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3MTI2MGExNWJjNjQ1ZWU4ZTE4Mzk4ZGQ0ZjFhNTk3MSIsIm5iZiI6MTc1ODE5OTc1Ni42ODk5OTk4LCJzdWIiOiI2OGNiZmZjYzRlMzU5NzJhYTMxNDkxNTIiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.64Z_V_s-8zgoalnB_-D2jKs1kK2vAji8AISaP6SSxmk";
-const BASE_URL = 'https://api.themoviedb.org/3';
-const IMG_URL = 'https://image.tmdb.org/t/p/w500';
+let apiKey = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3MTI2MGExNWJjNjQ1ZWU4ZTE4Mzk4ZGQ0ZjFhNTk3MSIsIm5iZiI6MTc1ODE5OTc1Ni42ODk5OTk4LCJzdWIiOiI2OGNiZmZjYzRlMzU5NzJhYTMxNDkxNTIiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.64Z_V_s-8zgoalnB_-D2jKs1kK2vAji8AISaP6SSxmk";
+let BASE_URL = 'https://api.themoviedb.org/3';
+let IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
 class libraryMovies 
 {
@@ -17,6 +17,7 @@ class libraryMovies
 }
 let movieList = [];
 
+
 //genre map
 const genreMap = {
   28: "Action", 12: "Adventure", 16: "Animation", 35: "Comedy",
@@ -26,24 +27,6 @@ const genreMap = {
   53: "Thriller", 10752: "War", 37: "Western"
 };
 
-function populateGenreDropdown() {
-    const genreDropdown = document.getElementById('dropdownGenre');
-    if (!genreDropdown) return;
-
-    genreDropdown.innerHTML = '';
-
-    const allOption = document.createElement('option');
-    allOption.value = 0;
-    allOption.textContent = 'All';
-    genreDropdown.appendChild(allOption);
-
-    for (const [id, name] of Object.entries(genreMap)) {
-        const option = document.createElement('option');
-        option.value = id;
-        option.textContent = name;
-        genreDropdown.appendChild(option);
-    }
-}
 
 
 const page = window.location.pathname.split('/').pop();
@@ -71,7 +54,8 @@ function removeFromWatchlist(movieId) {
 }
 
 // creating cards
-function createCard(movie, isWatchlistPage = false) {
+function createCard(movie, isWatchlistPage = false) 
+{
     const card = document.createElement('div');
     card.classList.add('col', 'col-lg-3', 'col-md-6', 'col-sm-12', 'mb-4', 'libraryCard'); 
 
@@ -96,7 +80,7 @@ function createCard(movie, isWatchlistPage = false) {
                         <i class="fa-solid fa-${isWatchlistPage ? 'minus' : 'plus'}"></i>
                         ${isWatchlistPage ? 'Remove' : 'Watchlist'}
                     </a>
-                    <a href="../pages/individual.html?id=${movie.id}" class="btn btn-primary holographicCard">More Info</a>
+                    <button onclick="saveClass('${movie.id}')"  class="btn btn-primary holographicCard">More Info</button>
                 </div>
             </div>
         </div>
@@ -104,6 +88,8 @@ function createCard(movie, isWatchlistPage = false) {
 
     return card;
 }
+
+//href="../pages/individual.html"
 
 
 //loading watchlist page
@@ -113,7 +99,6 @@ function loadWatchlist() {
 
     container.innerHTML = '';
     const watchlist = getWatchlist();
-
     if (watchlist.length === 0) {
         container.innerHTML = '<p>Your watchlist is empty.</p>';
         return;
@@ -123,7 +108,7 @@ function loadWatchlist() {
         const card = createCard(movie, true);
         container.appendChild(card);
     });
-
+    
     attachWatchlistButtons();
 }
 
@@ -199,12 +184,25 @@ async function loadRecommendations() {
         container.innerHTML = '';
 
         data.results.slice(0, 8).forEach(movie => {
+             let title = movie.title || movie.name;
+             let synopsis = movie.overview || "No synopsis available";
+             let poster = movie.poster_path
+             ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+             : "../assets/img/tangled.jpg";
+             let link = `https://www.themoviedb.org/movie/${movie.id}`;
+             let genreId = movie.genre_ids && movie.genre_ids.length > 0 ? movie.genre_ids[0] : null;
+             let year = movie.release_date ? movie.release_date.split("-")[0] : "Unknown";
+             let Movieid = movie.id;
+             let rate = movie.vote_average;
+             const newMovie = new  libraryMovies (title, synopsis, poster, link, genreId, year,Movieid,rate);
+             movieList.push(newMovie);
+
             movie.genre_names = movie.genre_ids ? movie.genre_ids.map(id => genreMap[id]) : [];
             const card = createCard(movie);
             card.classList.add('col', 'col-lg-3', 'col-md-6', 'col-sm-12', 'mb-4');
             container.appendChild(card);
         });
-
+        console.log("movie", movieList);
         attachWatchlistButtons();
     } catch (err) {
         console.error('Error fetching recommendations:', err);
@@ -231,7 +229,8 @@ function loadWatchlist() {
         return;
     }
     movieList = [];
-    watchlist.forEach(movie => {
+    watchlist.forEach(movie => 
+        {
         
         if (movie.poster_path && movie.poster_path.startsWith('http')) {
             movie.poster_path_full = movie.poster_path;
@@ -240,8 +239,9 @@ function loadWatchlist() {
         const card = createCard(movie, true); 
         card.classList.add('col', 'col-lg-3', 'col-md-6', 'col-sm-12', 'mb-4'); 
         container.appendChild(card);
+        
     });
-
+    console.log(watchlist);
     attachWatchlistButtons();
 }
 
@@ -261,7 +261,8 @@ function attachWatchlistButtons() {
                 removeFromWatchlist(movieId);
             } else {
                 const [genreP, yearP] = card.querySelectorAll('h6.genreAndYear p');
-                const movie = {
+                const movie = 
+                {
                     id: movieId,
                     title: card.querySelector('.movieTitle').textContent,
                     overview: card.querySelector('.cardText').textContent,
@@ -293,8 +294,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 //Home Page
-!async function(){
-const options = {
+!async function()
+{
+  const options = {
   method: 'GET',
   headers: {
     accept: 'application/json',
@@ -303,29 +305,32 @@ const options = {
 };
 
 let data= await fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', options)
-            .then((response)=> response.json())
-            .then((results)=> {return results})
-            .catch((error)=> console.log(error));
-            console.log(data);
+.then((response)=> response.json())
+.then((results)=> {return results})
+.catch((error)=> console.log(error));
+console.log(data);
 
 
-            //get and set slider images using Api
-              let sliderImage1 = `https://image.tmdb.org/t/p/original${data.results[0].backdrop_path}`;
-              let sliderImage2 = `https://image.tmdb.org/t/p/original${data.results[1].backdrop_path}`;
-              let sliderImage3 = `https://image.tmdb.org/t/p/original${data.results[2].backdrop_path}`;
+//get and set slider images using Api
+let sliderImage1 = `https://image.tmdb.org/t/p/original${data.results[0].backdrop_path}`;
+let sliderImage2 = `https://image.tmdb.org/t/p/original${data.results[1].backdrop_path}`;
+let sliderImage3 = `https://image.tmdb.org/t/p/original${data.results[2].backdrop_path}`;
           
-              document.getElementById('sliderImg1').innerHTML = `<img src="${sliderImage1}" class="d-block w-100">`;
-              document.getElementById('sliderImg2').innerHTML = `<img src="${sliderImage2}" class="d-block w-100">`;
-              document.getElementById('sliderImg3').innerHTML = `<img src="${sliderImage3}" class="d-block w-100">`;
+document.getElementById('sliderImg1').innerHTML = `<img src="${sliderImage1}" class="d-block w-100">`;
+document.getElementById('sliderImg2').innerHTML = `<img src="${sliderImage2}" class="d-block w-100">`;
+document.getElementById('sliderImg3').innerHTML = `<img src="${sliderImage3}" class="d-block w-100">`;
            
-            !async function(){
-const options = {
+!async function()
+{
+ const options = 
+ {
   method: 'GET',
-  headers: {
+  headers: 
+  {
     accept: 'application/json',
     Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3MTI2MGExNWJjNjQ1ZWU4ZTE4Mzk4ZGQ0ZjFhNTk3MSIsIm5iZiI6MTc1ODE5OTc1Ni42ODk5OTk4LCJzdWIiOiI2OGNiZmZjYzRlMzU5NzJhYTMxNDkxNTIiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.64Z_V_s-8zgoalnB_-D2jKs1kK2vAji8AISaP6SSxmk'
   }
-};
+  };
 
         let data= await fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', options)
             .then((response)=> response.json())
@@ -351,12 +356,7 @@ const options = {
               document.getElementById('movieMonth').innerHTML = `${title} : ${description}`;
               document.getElementById('movieMonthImg').innerHTML = `<img src="${image}" style="width: 9
             0%; border-radius: 50px;" alt="Movie Poster">`;        
-}();
-
-
-
-
-     
+}();   
 }();
 
 
@@ -457,7 +457,7 @@ function sortByGenre()
                         <!-- Make Watchlist add button work & put movie into user's watchlist por favor -->
                         <div class="libraryCardButtons">
                             <a href="#######" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;"><i class="fa-solid fa-plus"></i>Watchlist</a>
-                            <a href="../pages/individual.html" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;" onclick="saveClass('${Movies.Movieid}' ,'${Movies.rate}')  ">More Info</a>
+                            <a class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;" onclick="saveClass('${Movies.Movieid}' ,'${Movies.rate}')  ">More Info</a>
                         </div>
                     </div>
                 </div>
@@ -567,10 +567,11 @@ function sortByYear() {
 // end of filter section code
 
 //saved Data for indivial page
-function saveClass(indivialID,rate)
+async function saveClass(indivialID)
 {
   let byID = movieList.filter(movies => movies.Movieid==indivialID);
   console.log("newlist",byID);
+  let rate= "3.342";
   let shortRate = rate.substring(0,3);
 
   localStorage.setItem('savedMovieTitle', byID[0].title);
@@ -579,14 +580,15 @@ function saveClass(indivialID,rate)
   localStorage.setItem('savedGenre', genreMap[byID[0].genreId]);
   localStorage.setItem('savedMoviePoster',byID[0].poster);
   localStorage.setItem('savedID', indivialID);
-  localStorage.setItem('savedRate', (shortRate/2));
+  
 
   console.log(localStorage.getItem('savedID'));
   console.log(localStorage.getItem('savedMovieTitle'));
   console.log(localStorage.getItem('savedMovieYear'));
   console.log(localStorage.getItem('savedRate'))
-  fechTrailers(indivialID);
-  fetchCredits(indivialID);
+     fechTrailers(indivialID);
+     fetchCredits(indivialID);
+  window.location.href = "../pages/individual.html";
 }
 
 //Get Trailers from Api
@@ -673,7 +675,7 @@ async function fetchCredits(MovieID)
 //full indivial page
 function fullIndividual()
 {
-
+    console.log("hi");
   const container = document.getElementById("individualContainer");
      container.innerHTML = "";
       container.innerHTML += ` <div class="row individualMovieRow">
@@ -754,5 +756,4 @@ function fullIndividual()
     `;
 }
 
-
-document.addEventListener("DOMContentLoaded", fullIndividual );
+document.addEventListener("DOMContentLoaded", fullIndividual);
