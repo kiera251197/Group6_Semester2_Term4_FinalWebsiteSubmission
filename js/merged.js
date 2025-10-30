@@ -15,7 +15,22 @@ class libraryMovies
     this.rate= rate;
   }
 }
+
+class watchListMovie
+{
+  constructor(title, synopsis, poster, link, genreId, year,Movieid,rate) {
+    this.title = title;
+    this.synopsis = synopsis;
+    this.poster = poster;
+    this.link = link;
+    this.genreId = genreId;
+    this.year = year;
+    this.Movieid = Movieid;
+    this.rate= rate;
+  }
+}
 let movieList = [];
+let watchMovieList = [];
 
 
 //genre map
@@ -63,6 +78,8 @@ function createCard(movie, isWatchlistPage = false)
     card.dataset.year = movie.release_date ? movie.release_date.split('-')[0] : '';
     card.dataset.vote = movie.vote_average || 0;
 
+    
+
     card.innerHTML = `
         <div class="card h-100"> <!-- ensures same height for all cards -->
             <img src="${movie.poster_path ? IMG_URL + movie.poster_path : '../assets/img/tangled placeholder image.jpg'}" class="card-img-top" alt="${movie.title}" style="border-top-left-radius: 25px; border-top-right-radius: 25px;">
@@ -76,10 +93,10 @@ function createCard(movie, isWatchlistPage = false)
                 </h6>
                 <p class="cardText flex-grow-1">${movie.overview || 'No synopsis available.'}</p> <!-- flex-grow pushes buttons down -->
                 <div class="libraryCardButtons mt-auto">
-                    <a href="#" class="btn btn-primary holographicCard watchlistButton mb-1" data-movie-id="${movie.id}">
+                    <button onclick="saveWatchList('${movie.id}')" class="btn btn-primary holographicCard watchlistButton mb-1" data-movie-id="${movie.id}">
                         <i class="fa-solid fa-${isWatchlistPage ? 'minus' : 'plus'}"></i>
                         ${isWatchlistPage ? 'Remove' : 'Watchlist'}
-                    </a>
+                    </button>
                     <button onclick="saveClass('${movie.id}')"  class="btn btn-primary holographicCard">More Info</button>
                 </div>
             </div>
@@ -89,28 +106,46 @@ function createCard(movie, isWatchlistPage = false)
     return card;
 }
 
+function saveWatchList(movieId)
+{
+ let WatchbyID = movieList.filter(movies => movies.Movieid==movieId);
+ let WacthTitle =  WatchbyID[0].title;
+ let Watchrateing = WatchbyID[0].rate;
+ let Watchgenre= WatchbyID[0].genreId;
+ let Watchsynopsis= WatchbyID[0].synopsis;
+ let whathPoster=  WatchbyID[0].poster;
+ let watchYear= WatchbyID[0].year;
+ let watchLink =  WatchbyID[0].link;
+
+ const newMovie= new watchListMovie (WacthTitle, Watchsynopsis, whathPoster, watchLink, Watchgenre, watchYear,movieId,Watchrateing);
+ watchMovieList.push(newMovie);
+ console.log(watchMovieList);
+ localStorage.setItem('watchlistMovies',JSON.stringify(watchMovieList));
+ console.log( localStorage.getItem('watchlistMovies'));
+
+}
 //href="../pages/individual.html"
 
 
 //loading watchlist page
-function loadWatchlist() {
-    const container = document.getElementById('movieContainer') || document.querySelector('.libraryCards .row');
-    if (!container) return;
+// function loadWatchlist() {
+//     const container = document.getElementById('movieContainer') || document.querySelector('.libraryCards .row');
+//     if (!container) return;
 
-    container.innerHTML = '';
-    const watchlist = getWatchlist();
-    if (watchlist.length === 0) {
-        container.innerHTML = '<p>Your watchlist is empty.</p>';
-        return;
-    }
+//     container.innerHTML = '';
+//     const watchlist = getWatchlist();
+//     if (watchlist.length === 0) {
+//         container.innerHTML = '<p>Your watchlist is empty.</p>';
+//         return;
+//     }
 
-    watchlist.forEach(movie => {
-        const card = createCard(movie, true);
-        container.appendChild(card);
-    });
+//     watchlist.forEach(movie => {
+//         const card = createCard(movie, true);
+//         container.appendChild(card);
+//     });
     
-    attachWatchlistButtons();
-}
+//     attachWatchlistButtons();
+// }
 
 //loading library page
 async function loadLibrary() {
@@ -260,15 +295,18 @@ function attachWatchlistButtons() {
             if (isWatchlistPage) {
                 removeFromWatchlist(movieId);
             } else {
-                const [genreP, yearP] = card.querySelectorAll('h6.genreAndYear p');
+                const spans = card.querySelectorAll('h6.genreAndYear span');
+                const genreSpan = spans[0];
+                const yearSpan = spans[1];
+
                 const movie = 
                 {
                     id: movieId,
                     title: card.querySelector('.movieTitle').textContent,
                     overview: card.querySelector('.cardText').textContent,
                     poster_path: card.querySelector('img').src.includes('tangled placeholder') ? null : card.querySelector('img').src.replace(IMG_URL, ''),
-                    release_date: yearP?.textContent || '',
-                    genre_names: genreP?.textContent.split(', ') || []
+                    release_date: yearSpan?.textContent || '',
+                    genre_names: genreSpan?.textContent.split(', ') || []
                 };
                 addToWatchlist(movie);
             }
@@ -569,6 +607,29 @@ function sortByYear() {
 //saved Data for indivial page
 async function saveClass(indivialID)
 {
+  
+  const Watchlist = JSON.parse(localStorage.getItem('watchlistMovies'));
+  const existingMovie = Watchlist.find(movie => movie.Movieid === indivialID);
+
+ if (existingMovie)
+     {
+     localStorage.setItem('savedMovieTitle', existingMovie.title);
+     localStorage.setItem('savedMovieYear', existingMovie.year);
+     localStorage.setItem('savedSynopsis', existingMovie.synopsis);
+     localStorage.setItem('savedGenre', existingMovie.genreId);
+     localStorage.setItem('savedMoviePoster', existingMovie.poster);
+     localStorage.setItem('savedID', indivialID);
+
+     console.log (localStorage.getItem('savedMovieYear'));
+     console.log("Found movie:", existingMovie);
+     fechTrailers(indivialID);
+     fetchCredits(indivialID);
+     window.location.href = "../pages/individual.html";
+    }
+  else {
+  console.log("No movie with this ID in the list.");
+
+    console.log("list" ,Watchlist);
   let byID = movieList.filter(movies => movies.Movieid==indivialID);
   console.log("newlist",byID);
   let rate= "3.342";
@@ -589,6 +650,9 @@ async function saveClass(indivialID)
      fechTrailers(indivialID);
      fetchCredits(indivialID);
   window.location.href = "../pages/individual.html";
+ }
+
+
 }
 
 //Get Trailers from Api
@@ -737,12 +801,6 @@ function fullIndividual()
                         
                         <!-- Buttons -->
                         <div class="buttonsMovIndivDiv">
-                            <div class="holographicContainer">
-                                <div class="holographicCard">
-                                    <a href="#####" id="viewMoreButton"><i class="fa-solid fa-plus"></i>Watchlist</a>
-                                </div>
-                            </div>
-
                             <div class="holographicContainer">
                                 <div class="holographicCard">
                                     <a href="${localStorage.getItem('savedTrailer')}" id="viewMoreButton"><i class="fa-solid fa-play"></i>Watch Now</a>
