@@ -146,13 +146,15 @@
 
 /* INFO SECTION */
 .ourInfo{
-  background-color: #43B6AF;
+  background: #686968;
+  background: linear-gradient(153deg, rgba(104, 105, 104, 1) 12%, rgba(0, 240, 239, 1) 55%, rgba(104, 105, 104, 1) 94%);
   padding-top: 5%;
   padding-bottom: 5%;
   justify-content: center;
   align-items: center;
   align-content: center;
 }
+
 
 #infoCardHeading {
   font-family: 'Montserrat', sans-serif;
@@ -465,10 +467,18 @@
   padding: 2%;
 } */
 
+.FilterDropdown{
+  display: flex;
+  align-items: right;
+  gap: 0.5rem;
+  margin-right: 3rem; 
+}
+
 .sortByDropdown{
   display: flex;
   align-items: center;
   align-content: center;
+  box-shadow: rgba(0, 0, 0, 0.304) 0px 20px 30px -10px;
 }
 
 .formSelect{
@@ -480,7 +490,11 @@
   font-weight: 600;
   font-size: 100%;
   color: #FEFCF4;
+  padding: 0.5em 0.8em 0.5em 1.25em;
+  font-size: 1.0rem;
+  width: 150px;
 }
+
 
 /* CARDS */
 #libraryCard{

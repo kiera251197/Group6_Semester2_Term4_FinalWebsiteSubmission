@@ -64,16 +64,15 @@
     <section class="librarySection container-fluid">
         <div class="textAndFilter">
             <h1 id="libraryHeaderText">All Movies</h1>
-           
-            <!-- Luka & Caleb pls add code for the search bar here, its okay if you need to delete mine & if you need to redo the dropdown thats cool as well please just lmk when youre done with both so that I am able to style it xoxo gossip girl (Kiera) -->
-            <div class="searchAndSort">
-                <form class="d-flex position-relative align-items-center" role="search" style="width: 250px;">
-                <input class="librarySearchBar form-control ps-5" type="search" placeholder="Search..." aria-label="Search">
-                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                </form>
-        
+            <div class="FilterDropdown">
+                    <select class="formSelect" aria-label="Default select example" onchange="sortByFilterType()"  id="dropdownType">
+                        <option selected value="0">Genre</option>
+                        <option value="1" >Rating</option>
+                        <option value="2" >Year</option>
+                        </select>
+             
                 <!-- SortBy Dropdown -->
-                <div class="sortByDropdown">
+                <div class="sortByDropdown" id="DropdownChange">
                     <select class="formSelect" aria-label="Default select example" onchange="sortByGenre()"  id="dropdownGenre">
                         <option selected value="0">All</option>
                         <option value="28" >Action</option>
@@ -94,116 +93,13 @@
         </div>
 
         <div class="container-sm libraryCards">
-            <div class="row row-cols-1 row-cols-md-3 g-4 align-items-stretch"  id="movieContainer">
-                <div class="col col-lg-3 col-md-6 align-items-stretch h-100" id="libraryCard">
-                    <img src="../assets/img/tangled placeholder image.jpg" class="card-img-top" alt="..." style="border-top-left-radius: 25px; border-top-right-radius: 25px;">
-                    <div class="card-body libraryCardBody">
-                        <!-- Movie Title -->
-                        <h3 class="movieTitle">Movie Name</h3>
-
-                        <!-- Genre & Release Year -->
-                        <h6 class="genreAndYear">
-                            <i class="fa-solid fa-film"></i>
-                            <p class="genreText">API Genre</p>
-
-                            <i class="fa-solid fa-calendar" style="margin-left: 30px;"></i>
-                            <p class="yearText">API Release Year</p>
-                        </h6>
-
-                        <!-- Sypnopsis Text -->
-                        <p class="cardText">Populate this part with the sypnopsis of the movie aquired from the API</p>
-
-                        <!-- Make Watchlist add button work & put movie into user's watchlist por favor -->
-                        <div class="libraryCardButtons">
-                            <a href="#######" class="btn btn-primary holographicCard libraryActionButtons" id="watchlistButton" style="margin: 0;"><i class="fa-solid fa-plus"></i>Watchlist</a>
-                            <a href="../pages/individual.html" class="btn btn-primary holographicCard libraryActionButtons" id="watchlistButton" style="margin: 0;">More Info</a>
-                        </div>
-                    </div>
+            
+            <div class="container-sm libraryCards">
+                <div class="row row-cols-1 row-cols-md-3 g-4 align-items-stretch" id="movieContainer">
+                    <!-- JS will dynamically insert movie cards here -->
                 </div>
+            </div>
 
-
-
-                <div class="col col-lg-3 col-md-6 align-items-stretch h-100" id="libraryCard">
-                    <img src="../assets/img/tangled placeholder image.jpg" class="card-img-top" alt="..." style="border-top-left-radius: 25px; border-top-right-radius: 25px;">
-                    <div class="card-body libraryCardBody">
-                        <!-- Movie Title -->
-                        <h3 class="movieTitle">Movie Name</h3>
-
-                        <!-- Genre & Release Year -->
-                        <h6 class="genreAndYear">
-                            <i class="fa-solid fa-film"></i>
-                            <p class="genreText">API Genre</p>
-
-                            <i class="fa-solid fa-calendar" style="margin-left: 30px;"></i>
-                            <p class="yearText">API Release Year</p>
-                        </h6>
-
-                        <!-- Sypnopsis Text -->
-                        <p class="cardText">Populate this part with the sypnopsis of the movie aquired from the API</p>
-
-                        <!-- Make Watchlist add button work & put movie into user's watchlist por favor -->
-                        <div class="libraryCardButtons">
-                            <a href="#######" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;"><i class="fa-solid fa-plus"></i>Watchlist</a>
-                            <a href="../pages/individual.html" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;">More Info</a>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <div class="col col-lg-3 col-md-6 align-items-stretch h-100" id="libraryCard">
-                    <img src="../assets/img/tangled placeholder image.jpg" class="card-img-top" alt="..." style="border-top-left-radius: 25px; border-top-right-radius: 25px;">
-                    <div class="card-body libraryCardBody">
-                        <!-- Movie Title -->
-                        <h3 class="movieTitle">Movie Name</h3>
-
-                        <!-- Genre & Release Year -->
-                        <h6 class="genreAndYear">
-                            <i class="fa-solid fa-film"></i>
-                            <p class="genreText">API Genre</p>
-
-                            <i class="fa-solid fa-calendar" style="margin-left: 30px;"></i>
-                            <p class="yearText">API Release Year</p>
-                        </h6>
-
-                        <!-- Sypnopsis Text -->
-                        <p class="cardText">Populate this part with the sypnopsis of the movie aquired from the API</p>
-
-                        <!-- Make Watchlist add button work & put movie into user's watchlist por favor -->
-                        <div class="libraryCardButtons">
-                            <a href="#######" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;"><i class="fa-solid fa-plus"></i>Watchlist</a>
-                            <a href="../pages/individual.html" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;">More Info</a>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <div class="col col-lg-3 col-md-6 align-items-stretch h-100" id="libraryCard">
-                    <img src="../assets/img/tangled placeholder image.jpg" class="card-img-top" alt="..." style="border-top-left-radius: 25px; border-top-right-radius: 25px;">
-                    <div class="card-body libraryCardBody">
-                        <!-- Movie Title -->
-                        <h3 class="movieTitle">Movie Name</h3>
-
-                        <!-- Genre & Release Year -->
-                        <h6 class="genreAndYear">
-                            <i class="fa-solid fa-film"></i>
-                            <p class="genreText">API Genre</p>
-
-                            <i class="fa-solid fa-calendar" style="margin-left: 30px;"></i>
-                            <p class="yearText">API Release Year</p>
-                        </h6>
-
-                        <!-- Sypnopsis Text -->
-                        <p class="cardText">Populate this part with the sypnopsis of the movie aquired from the API</p>
-
-                        <!-- Make Watchlist add button work & put movie into user's watchlist por favor -->
-                        <div class="libraryCardButtons">
-                            <a href="#######" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;"><i class="fa-solid fa-plus"></i>Watchlist</a>
-                            <a href="../pages/individual.html" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;">More Info</a>
-                        </div>
-                    </div>
-                </div>
         </div>        
     </div>
     </section>
@@ -257,10 +153,8 @@
     <!-- Js & Bootstrap Links -->
      <script src="https://kit.fontawesome.com/e09304f43b.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    <script src="../js/jquery.js"></script>
-    <script src="../js/config.js"></script>
-    <script src="../js/script.js"></script>
-    <script src="../js/library.js"></script>
+    <script src="../js/merged.js"></script>
+
 
 </body>
 </html>
