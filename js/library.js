@@ -30,7 +30,7 @@ const libraryApiUrl = "https://api.themoviedb.org/3/movie/upcoming?";
 
 function buildMovieCard(movieObj) {
   return `
-    <div class="col col-lg-3 col-md-6 align-items-stretch h-100 libraryCard">
+    <div class="col col-lg-3 col-md-6 align-items-stretch libraryCard">
       <img src="${movieObj.poster}" class="card-img-top" alt="${movieObj.title} poster" style="border-top-left-radius: 25px; border-top-right-radius: 25px;">
       <div class="card-body libraryCardBody">
         <h3 class="movieTitle">${movieObj.title}</h3>
@@ -283,7 +283,7 @@ function sortByGenre()
      const container = document.getElementById("movieContainer");
      container.innerHTML = "";
      byGenre.forEach((Movies) => {
-      container.innerHTML += `<div class="col col-lg-3 col-md-6 align-items-stretch h-100" id="libraryCard">
+      container.innerHTML += `<div class="col col-lg-3 col-md-6 align-items-stretch" id="libraryCard">
                     <img src="https://image.tmdb.org/t/p/w500${Movies.poster}" class="card-img-top" alt="${Movies.title} poster"  style="border-top-left-radius: 25px; border-top-right-radius: 25px;">
                     <div class="card-body libraryCardBody">
                         <!-- Movie Title -->
@@ -328,7 +328,7 @@ function sortByRateing()
      const container = document.getElementById("movieContainer");
      container.innerHTML = "";
       byRate.forEach((Movies) => {
-      container.innerHTML += `<div class="col col-lg-3 col-md-6 align-items-stretch h-100" id="libraryCard">
+      container.innerHTML += `<div class="col col-lg-3 col-md-6 align-items-stretch" id="libraryCard">
                     <img src="https://image.tmdb.org/t/p/w500${Movies.poster}" class="card-img-top" alt="${Movies.title} poster"  style="border-top-left-radius: 25px; border-top-right-radius: 25px;">
                     <div class="card-body libraryCardBody">
                         <!-- Movie Title -->
@@ -377,7 +377,7 @@ function sortByYear() {
      container.innerHTML = "";
       byYear.forEach((Movies) => 
         {
-            container.innerHTML += `<div class="col col-lg-3 col-md-6 align-items-stretch h-100" id="libraryCard">
+            container.innerHTML += `<div class="col col-lg-3 col-md-6 align-items-stretch" id="libraryCard">
                     <img src="https://image.tmdb.org/t/p/w500${Movies.poster}" class="card-img-top" alt="${Movies.title} poster"  style="border-top-left-radius: 25px; border-top-right-radius: 25px;">
                     <div class="card-body libraryCardBody">
                         <!-- Movie Title -->
