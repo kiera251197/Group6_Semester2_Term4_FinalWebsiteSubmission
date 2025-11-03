@@ -8615,3 +8615,80 @@ if ( typeof noGlobal === "undefined" ) {
 
 return jQuery;
 } );
+
+
+// ------------------------------------Sign up database---------------------------------------
+//Have to have this because code wont work otherwise. I tried everything else
+var users = [];
+
+var signupButton = document.querySelector('input[value="Sign-up"]');
+signupButton.addEventListener("click", function(event) {
+  event.preventDefault();
+
+  var email = document.getElementById("email-1").value;
+  var password = document.getElementById("password-1").value;
+
+  if (email === "" || password === "") {
+    alert("Please fill in both fields.");
+    return;
+  }
+
+  if (email.indexOf("@") === -1) {
+    alert("We need a valid email address to complete your stream. Make sure it contains the @ swirl.");
+    return;
+  }
+
+  if (password.length < 8) {
+    alert("Your password must be at least 8 currents strong.");
+    return;
+  }
+
+  // Personal Note: THis make sures the user doesnt exist already
+  var exists = false;
+  for (var i = 0; i < users.length; i++) {
+    if (users[i].email === email) {
+      exists = true;
+      break;
+    }
+  }
+
+  if (exists) {
+    alert("Your email appears to already be taken up in our Vortex. Please try another");
+    return;
+  }
+
+  users.push({ email: email, password: password });
+  alert("Welcome to the vortex!");
+
+  document.getElementById("email-1").value = "";
+  document.getElementById("password-1").value = "";
+});
+
+
+// --- -----------------------------------------------LOGIN database---------------------------------------
+var loginButton = document.querySelector('input[value="Login"]');
+loginButton.addEventListener("click", function(event) {
+  event.preventDefault();
+
+  var email = document.getElementById("email-2").value;
+  var password = document.getElementById("password-2").value;
+
+  if (email === "" || password === "") {
+    alert("Please fill in both fields.");
+    return;
+  }
+
+  var found = false;
+  for (var i = 0; i < users.length; i++) {
+    if (users[i].email === email && users[i].password === password) {
+      found = true;
+      break;
+    }
+  }
+
+  if (found) {
+    alert("Welcome back, " + email + "! Ready to jump back into the Vortx? Let the streams pull you in!");
+  } else {
+    alert("Sorry. It appears that you are not part of our family yet. Please sign up first.");
+  }
+});
