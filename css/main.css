@@ -69,6 +69,11 @@
   border-top-right-radius: 30px;
 }
 
+.card{
+  overflow: hidden;
+  border-radius: 25px;
+}
+
 .recsCards .col {
   display: flex;     
 }

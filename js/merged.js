@@ -147,6 +147,37 @@ function saveWatchList(movieId)
 //     attachWatchlistButtons();
 // }
 
+// search bar down below 
+
+let moviesData = []; 
+
+fetch('https://api.themoviedb.org/3/genre/movie/list')
+    .then(res => res.json())
+    .then(data => {
+        moviesData = data.results; 
+        renderMovies(moviesData); 
+    });
+
+
+const searchForm = document.querySelector('.d-flex[role="search"]');
+const searchInput = document.getElementById('movieSearchInput');
+
+searchForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const query = searchInput.value.trim().toLowerCase();
+    if (!query) return;
+
+    const movie = moviesData.find(m => m.title.toLowerCase() === query);
+
+    if (movie) {
+        window.location.href = `individual.html?id=${movie.id}`;
+    } else {
+        alert('Movie not found!');
+    }
+});
+
+
+
 //loading library page
 async function loadLibrary() {
     const container = document.getElementById('movieContainer');
@@ -161,7 +192,9 @@ async function loadLibrary() {
             }
         });
         const data = await response.json();
+        moviesData = data.results;
 
+        
 
         
         container.innerHTML = '';
