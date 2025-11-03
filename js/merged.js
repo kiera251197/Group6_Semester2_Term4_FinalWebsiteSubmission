@@ -124,28 +124,36 @@ function saveWatchList(movieId)
  console.log( localStorage.getItem('watchlistMovies'));
 
 }
-//href="../pages/individual.html"
+ 
+// search bar down below 
 
 
-//loading watchlist page
-// function loadWatchlist() {
-//     const container = document.getElementById('movieContainer') || document.querySelector('.libraryCards .row');
-//     if (!container) return;
 
-//     container.innerHTML = '';
-//     const watchlist = getWatchlist();
-//     if (watchlist.length === 0) {
-//         container.innerHTML = '<p>Your watchlist is empty.</p>';
-//         return;
-//     }
-
-//     watchlist.forEach(movie => {
-//         const card = createCard(movie, true);
-//         container.appendChild(card);
+// fetch('https://api.themoviedb.org/3/genre/movie/list')
+//     .then(res => res.json())
+//     .then(data => {
+//         moviesData = data.results; 
+//         renderMovies(moviesData); 
 //     });
-    
-//     attachWatchlistButtons();
-// }
+
+
+// const searchForm = document.querySelector('.d-flex[role="search"]');
+// const searchInput = document.getElementById('movieSearchInput');
+
+// searchForm.addEventListener('submit', function(e) {
+//     e.preventDefault();
+//     const query = searchInput.value.trim().toLowerCase();
+//     if (!query) return;
+
+//     const movie = moviesData.find(m => m.title.toLowerCase() === query);
+
+//     if (movie) {
+        
+//         window.location.href = individual.html;
+//     } else {
+//         alert('Movie not found!');
+//     }
+// })
 
 //loading library page
 async function loadLibrary() {
@@ -494,7 +502,7 @@ function sortByGenre()
 
                         <!-- Make Watchlist add button work & put movie into user's watchlist por favor -->
                         <div class="libraryCardButtons">
-                            <a href="#######" class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;"><i class="fa-solid fa-plus"></i>Watchlist</a>
+                            <a href="#######" onclick="saveWatchList('${Movies.id}'  class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;"><i class="fa-solid fa-plus"></i>Watchlist</a>
                             <a class="btn btn-primary holographicCard" id="watchlistButton" style="margin: 0;" onclick="saveClass('${Movies.Movieid}' ,'${Movies.rate}')  ">More Info</a>
                         </div>
                     </div>
@@ -616,7 +624,7 @@ async function saveClass(indivialID)
      localStorage.setItem('savedMovieTitle', existingMovie.title);
      localStorage.setItem('savedMovieYear', existingMovie.year);
      localStorage.setItem('savedSynopsis', existingMovie.synopsis);
-     localStorage.setItem('savedGenre', existingMovie.genreId);
+     localStorage.setItem('savedGenre', genreMap[existingMovie.genreId]);
      localStorage.setItem('savedMoviePoster', existingMovie.poster);
      localStorage.setItem('savedID', indivialID);
 
@@ -626,7 +634,9 @@ async function saveClass(indivialID)
      fetchCredits(indivialID);
      window.location.href = "../pages/individual.html";
     }
-  else {
+  
+    else
+         {
   console.log("No movie with this ID in the list.");
 
     console.log("list" ,Watchlist);
