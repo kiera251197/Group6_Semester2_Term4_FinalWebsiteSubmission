@@ -5,3 +5,9 @@ Ambient moving gradient background w/mouse awareness [IN-PROG]. (n.d.). CodePen.
 
 Login/Sign Up form:
 Login and Signup form. (n.d.). CodePen. Retrieved October 11, 2025, from https://codepen.io/rahul-pxl/pen/MqdJmX
+
+Our gitHub repository link:
+https://github.com/kiera251197/Group6_Semester2_Term4_FinalWebsiteSubmission
+
+Our live website link:
+https://vortx-streaming.web.app

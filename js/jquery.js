@@ -8802,76 +8802,75 @@ animationContainer.addEventListener('mousemove', (e)=> {
    // animationContainer.style.setProperty("--radial-position-8", calculateLocationChange("--radial-position-8", x));
 });
 
-//Login/Signup form
-function formChange(button) {
-  const signUpForm = document.getElementById("sign-up-form");
-  signUpForm.classList.toggle("display-none");
-
-  const login = document.getElementById("login");
-  login.classList.toggle("display-none");
-
-  const signUp = document.getElementById("sign-up");
-  signUp.classList.toggle("display-flex");
-
-  const loginForm = document.getElementById("login-form");
-  loginForm.classList.toggle("display-flex");
-
-  const col1 = document.getElementById("col-1");
-  const col2 = document.getElementById("col-2");
-  col1.classList.toggle("order");
-
-  if (button === "login") {
-    col1.classList.add("bounce-left");
-    col1.classList.remove("bounce-right");
-
-    col2.classList.add("bounce-right");
-    col2.classList.remove("bounce-left");
-  } else {
-    col1.classList.add("bounce-right");
-    col1.classList.remove("bounce-left");
-
-    col2.classList.add("bounce-left");
-    col2.classList.remove("bounce-right");
-  }
+// ------------------------------------Sign up database---------------------------------------
+var users = localStorage.getItem("users");
+if (!users) {
+  users = ""; // if nothing saved yet, start empty
 }
 
-const email1 = document.getElementById("email-1");
-const emailSpan1 = document.getElementById("span-email-1");
-const email2 = document.getElementById("email-2");
-const emailSpan2 = document.getElementById("span-email-2");
-const password1 = document.getElementById("password-1");
-const passwordSpan1 = document.getElementById("span-password-1");
-const password2 = document.getElementById("password-2");
-const passwordSpan2 = document.getElementById("span-password-2");
+var signupButton = document.querySelector('input[value="Sign-up"]');
+signupButton.addEventListener("click", function(event) {
+  event.preventDefault();
 
-email1.addEventListener("input", () => {
-  if (email1.value) {
-    emailSpan1.classList.add("focus-span");
-  } else {
-    emailSpan1.classList.remove("focus-span");
+  var email = document.getElementById("email-1").value;
+  var password = document.getElementById("password-1").value;
+
+  if (email === "" || password === "") {
+    alert("Please fill in both fields.");
+    return;
   }
+
+  if (email.indexOf("@") === -1) {
+    alert("We need a valid email address to complete your stream. Make sure it contains the @ swirl.");
+    return;
+  }
+
+  if (password.length < 8) {
+    alert("Your password must be at least 8 currents strong.");
+    return;
+  }
+
+  if (users.includes(email + ":")) {
+    alert("Your email appears to already be taken up in our Vortex. Please try another.");
+    return;
+  }
+
+  // Add new user (we store them as "email:password;" in one long string)
+  users += email + ":" + password + ";";
+
+  // Save the new data into local storage
+  localStorage.setItem("users", users);
+
+  alert("Welcome to the Vortex!");
+
+  document.getElementById("email-1").value = "";
+  document.getElementById("password-1").value = "";
 });
 
-email2.addEventListener("input", () => {
-  if (email2.value) {
-    emailSpan2.classList.add("focus-span");
-  } else {
-    emailSpan2.classList.remove("focus-span");
-  }
-});
 
-password1.addEventListener("input", () => {
-  if (password1.value) {
-    passwordSpan1.classList.add("focus-span");
-  } else {
-    passwordSpan1.classList.remove("focus-span");
-  }
-});
+// -----------------------------------------------LOGIN database---------------------------------------
+var loginButton = document.querySelector('input[value="Login"]');
+loginButton.addEventListener("click", function(event) {
+  event.preventDefault();
 
-password2.addEventListener("input", () => {
-  if (password2.value) {
-    passwordSpan2.classList.add("focus-span");
-  } else {
-    passwordSpan2.classList.remove("focus-span");
+  var email = document.getElementById("email-2").value;
+  var password = document.getElementById("password-2").value;
+
+  if (email === "" || password === "") {
+    alert("Please fill in both fields.");
+    return;
   }
+
+  var users = localStorage.getItem("users") || "";
+
+  // check if email and password combo exists
+  if (users.includes(email + ":" + password + ";")) {
+    alert("Welcome back, " + email + "! Ready to jump back into the Vortx? Let the streams pull you in!");
+    console.log("Logged in user:", email);
+	
+	 document.getElementById("email-2").value = "";
+    document.getElementById("password-2").value = "";
+  } else {
+    alert("Sorry. It appears that you are not part of our family yet. Please sign up first.");
+  }
 });
