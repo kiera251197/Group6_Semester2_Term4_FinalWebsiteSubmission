@@ -8618,8 +8618,10 @@ return jQuery;
 
 
 // ------------------------------------Sign up database---------------------------------------
-//Have to have this because code wont work otherwise. I tried everything else
-var users = [];
+var users = localStorage.getItem("users");
+if (!users) {
+  users = ""; // if nothing saved yet, start empty
+}
 
 var signupButton = document.querySelector('input[value="Sign-up"]');
 signupButton.addEventListener("click", function(event) {
@@ -8643,29 +8645,25 @@ signupButton.addEventListener("click", function(event) {
     return;
   }
 
-  // Personal Note: THis make sures the user doesnt exist already
-  var exists = false;
-  for (var i = 0; i < users.length; i++) {
-    if (users[i].email === email) {
-      exists = true;
-      break;
-    }
-  }
-
-  if (exists) {
-    alert("Your email appears to already be taken up in our Vortex. Please try another");
+  if (users.includes(email + ":")) {
+    alert("Your email appears to already be taken up in our Vortex. Please try another.");
     return;
   }
 
-  users.push({ email: email, password: password });
-  alert("Welcome to the vortex!");
+  // Add new user (we store them as "email:password;" in one long string)
+  users += email + ":" + password + ";";
+
+  // Save the new data into local storage
+  localStorage.setItem("users", users);
+
+  alert("Welcome to the Vortex!");
 
   document.getElementById("email-1").value = "";
   document.getElementById("password-1").value = "";
 });
 
 
-// --- -----------------------------------------------LOGIN database---------------------------------------
+// -----------------------------------------------LOGIN database---------------------------------------
 var loginButton = document.querySelector('input[value="Login"]');
 loginButton.addEventListener("click", function(event) {
   event.preventDefault();
@@ -8678,16 +8676,15 @@ loginButton.addEventListener("click", function(event) {
     return;
   }
 
-  var found = false;
-  for (var i = 0; i < users.length; i++) {
-    if (users[i].email === email && users[i].password === password) {
-      found = true;
-      break;
-    }
-  }
+  var users = localStorage.getItem("users") || "";
 
-  if (found) {
+  // check if email and password combo exists
+  if (users.includes(email + ":" + password + ";")) {
     alert("Welcome back, " + email + "! Ready to jump back into the Vortx? Let the streams pull you in!");
+    console.log("Logged in user:", email);
+	
+	 document.getElementById("email-2").value = "";
+    document.getElementById("password-2").value = "";
   } else {
     alert("Sorry. It appears that you are not part of our family yet. Please sign up first.");
   }
